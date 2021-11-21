@@ -108,9 +108,11 @@ private extension PinView {
     }
 }
 
+#if DEBUG
 struct PinView_Previews: PreviewProvider {
     static let viewModel = PinViewModel(container: .preview)
     static var previews: some View {
         PinView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
     }
 }
+#endif
