@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  GitHubUsers
+//
+//  Created by kangnux on 2021/11/16.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+ServerURL = https:/$()/api.github.com
+GitHubApiToken = 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

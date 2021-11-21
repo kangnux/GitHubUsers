@@ -1,0 +1,346 @@
+swagger: "2.0"
+info:
+  description: "Git Hub API V3"
+  version: "1.0.0"
+  title: "GitHubAPI"
+
+host: "api.github.com"
+basePath: "/v3"
+tags:
+- name: "Search"
+  description: "Search API"
+  externalDocs:
+    description: "Docs"
+    url: "https://docs.github.com/en/rest/reference/search"
+- name: "Users"
+  description: "Users API"
+  externalDocs:
+    description: "Docs"
+    url: "https://docs.github.com/en/rest/reference/users"
+- name: "Repositories"
+  description: "Repositories API"
+  externalDocs:
+    description: "Docs"
+    url: "https://docs.github.com/en/rest/reference/repos"
+schemes:
+- "https"
+paths:
+  /search/users:
+    get:
+      tags:
+      - "Search"
+      summary: "Search users"
+      description: ""
+      operationId: "requestSearchUsers"
+      consumes:
+      - "application/vnd.github.v3+json"
+      produces:
+      - "application/vnd.github.v3+json"
+      parameters:
+      - in: query
+        name: q
+        required: true
+        type: string
+        description: "The query contains one or more search keywords and qualifiers. "
+      - in: query
+        name: sort
+        required: false
+        type: string
+        description: "Sorts the results of your query by number of followers or repositories, or when the person joined GitHub. "
+      - in: query
+        name: order
+        required: false
+        type: string
+        description: "Determines whether the first search result returned is the highest number of matches (desc) or lowest number of matches (asc). This parameter is ignored unless you provide sort. "
+      - in: query
+        name: per_page
+        required: false
+        type: integer
+        description: "Results per page (max 100) "
+      - in: query
+        name: page
+        required: false
+        type: integer
+        description: "Page number of the results to fetch. "
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitSearchUserResponse"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+  /users/{username}:
+    get:
+      tags:
+      - "Users"
+      summary: "User Info"
+      description: ""
+      operationId: "requestUsers"
+      consumes:
+      - "application/vnd.github.v3+json"
+      produces:
+      - "application/vnd.github.v3+json"
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: string
+        description: "Provides publicly available information about someone with a GitHub account."
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitUserInfo"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+  /users/{username}/repos:
+    get:
+      tags:
+      - "Repositories"
+      summary: "User Info"
+      description: ""
+      operationId: "requestRepos"
+      consumes:
+      - "application/vnd.github.v3+json"
+      produces:
+      - "application/vnd.github.v3+json"
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: string
+        description: "Provides publicly available information about someone with a GitHub account."
+      - in: query
+        name: type
+        required: false
+        type: string
+        description: "Can be one of all, owner, member. Default: owner"
+      - in: query
+        name: sort
+        required: false
+        type: string
+        description: "Can be one of created, updated, pushed, full_name. Default: full_name"
+      - in: query
+        name: direction
+        required: false
+        type: string
+        description: "Can be one of asc or desc. Default: asc when using full_name, otherwise desc"
+      - in: query
+        name: per_page
+        required: false
+        type: integer
+        description: "Results per page (max 100) Default: 30" 
+      - in: query
+        name: page
+        required: false
+        type: integer
+        description: "ResultsPage number of the results to fetch. Default: 1" 
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitReposList"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+  /repos/{username}/{repo}:
+    get:
+      tags:
+      - "Repositories"
+      summary: "Get a repository"
+      description: ""
+      operationId: "requestGetRepository"
+      consumes:
+      - "application/vnd.github.v3+json"
+      produces:
+      - "application/vnd.github.v3+json"
+      parameters:
+      - in: path
+        name: username
+        required: true
+        type: "string"
+        description: "Provides publicly available information about someone with a GitHub account."
+      - in: path
+        name: repo
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitReposItem"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+definitions:
+  GitSearchUserResponse:
+    type: "object"
+    properties:
+      total_count:
+        type: "integer"
+      incomplete_results:
+        type: "boolean"
+      items:
+        type: "array"
+        items: 
+          $ref: "#/definitions/GitSearchUserItem"
+  GitSearchUserItem:
+    type: "object"
+    properties:
+      login:
+        type: "string"
+        example: "mojombo"
+      id:
+        type: "integer"
+        format: "int64"
+      node_id:
+        type: "string"
+        example: "MDQ6VXNlcjE="
+      avatar_url:
+        type: "string"
+        example: "https://secure.gravatar.com/avatar/25c7c18223fb42a4c6ae1c8db6f50f9b?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png"
+      gravatar_id:
+        type: "string"
+        example: ""
+      url:
+        type: "string"
+        example: "https://api.github.com/users/mojombo"
+      html_url:
+        type: "string"
+        description: ""
+      followers_url:
+        type: "string"
+        description: ""
+      following_url:
+        type: "string"
+        description: ""
+      gists_url:
+        type: "string"
+        description: ""
+      starred_url:
+        type: "string"
+        description: ""
+      subscriptions_url:
+        type: "string"
+        description: ""
+      organizations_url:
+        type: "string"
+        description: ""
+      repos_url:
+        type: "string"
+        description: ""
+      events_url:
+        type: "string"
+        description: ""
+      received_events_url:
+        type: "string"
+        description: ""
+      type:
+        type: "string"
+        description: ""
+      score:
+        type: "number"
+      site_admin:
+        type: "boolean"
+  GitUserInfo:
+    type: "object"
+    properties:
+      login:
+        type: "string"
+        example: "mojombo"
+      id:
+        type: "integer"
+        format: "int64"
+      node_id:
+        type: "string"
+        example: "MDQ6VXNlcjE="
+      avatar_url:
+        type: "string"
+        example: "xxx.png"
+      gravatar_id:
+        type: "string"
+        example: ""
+      url:
+        type: "string"
+        example: "https://api.github.com/users/mojombo"
+      html_url:
+        type: "string"
+        description: ""
+      repos_url:
+        type: "string"
+        description: ""
+      name:
+        type: "string"
+        description: ""
+      company:
+        type: "string"
+        description: ""
+      location:
+        type: "string"
+        description: ""
+      email:
+        type: "string"
+        description: ""
+      bio:
+        type: "string"
+        description: ""
+      followers:
+        type: "integer"
+      following:
+        type: "integer"
+  GitReposList:
+    type: "array"
+    items: 
+      $ref: "#/definitions/GitReposItem"
+  GitReposItem:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        example: "octocat/boysenberry-repo-1"
+      private:
+        type: "boolean"
+      owner:
+        $ref: "#/definitions/GitReposOwner"
+      html_url:
+        type: "string"
+        example: "https://github.com/octocat/Hello-World"
+      description:
+        type: "string"
+        example: "My first repository on GitHub!"
+      fork:
+        type: "boolean"
+      url:
+        type: "string"
+        example: "https://api.github.com/users/mojombo"
+      stargazers_count:
+        type: "integer"
+      watchers_count:
+        type: "integer"
+      language:
+        type: "string"
+      forks_count:
+        type: "integer"
+      allow_forking:
+        type: "boolean"
+  GitReposOwner:
+    type: "object"
+    properties:
+      login:
+        type: "string"
+        example: "mojombo"
+  

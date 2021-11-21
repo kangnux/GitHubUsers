@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  GitHubUsers
+
+  Created by kangnux on 2021/11/16.
+  
+*/
+
+// Symbol
+"empty" = "";
+"hyphen" = "-";
+"zero" = "0";
+
+// Main
+"search" = "Search";
+"pin" = "Pin";
+"setting" = "Setting";
+
+// UserList
+"user" = "User";
+"cancel" = "Cancel";
+"follwers" = "Followers %@ • Following %@";
+"noResults" = "There is no results for \n%@";
+"noPinItem" = "Add some pin to show here...";
+"countTitle" = "Number of searches %@";
+
+// UserDetail
+"mailto" = "mailto:%@";
+"showPublic" = "Public";
+"showPrivate" = "Private";
+"repositories" = "Repositories";
+
+// Thank
+"dark" = "Dark";
+"light" = "Light";
+"auto" = "Auto";
+"system" = "System";
+"thankTitle" = "Thank You !!!🙇🏻‍♂️🙇🏻‍♂️🙇🏻‍♂️☕️☕️☕️";
+"thank" = "Thank";
+"gitHubApiNameEN" = "GitHub REST API(EN)";
+"gitHubApiNameJP" = "GitHub REST API(JP)";
+"openColorHome" = "Open Color HomePage";
+"openColorGit" = "Open Color GitHub";
+
+// Error
+"ErrorCode" = "\nError Code: %@";
+"NotModified" = "Not Modified";
+"Unauthorized" = "Unauthorized";
+"Forbidden" = "Forbidden";
+"NotFound" = "Not Found";
+"UnprocessableEntity" = "Unprocessable Entity";
+"ServiceUnavailable" = "Service Unavailable";
+"CancelError" = "User Cancel";
+"ConnectError" = "Connect Error";
+"DataError" = "Data Error";
+"Close" = "Close";
+"RetryLater" = "\nPlease retry later.";
+"UpdateToken" = "\nPlease update the token.";
+"CheckInput" = "\nPlease check your input.";
+"icon8" = "ICONS8";
