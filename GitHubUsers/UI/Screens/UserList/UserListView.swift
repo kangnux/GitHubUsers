@@ -142,9 +142,11 @@ private extension UserListView {
     }
 }
 
+#if DEBUG
 struct UserListView_Previews: PreviewProvider {
     static let viewModel = UserListViewModel.init(container: .preview)
     static var previews: some View {
         UserListView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
     }
 }
+#endif

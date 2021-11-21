@@ -179,6 +179,7 @@ private extension UserDetailView {
     }
 }
 
+#if DEBUG
 struct UserDetailView_Previews: PreviewProvider {
     static let user = UserEntity(
         login: "octocat",
@@ -195,3 +196,4 @@ struct UserDetailView_Previews: PreviewProvider {
         UserDetailView(viewModel: .init(container: .preview, userInfo: user))
     }
 }
+#endif

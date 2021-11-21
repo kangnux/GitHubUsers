@@ -134,6 +134,7 @@ private extension OmitUserView {
     }
 }
 
+#if DEBUG
 struct OmitUserView_Previews: PreviewProvider {
     static let user = UserEntity(
         login: "octocat",
@@ -150,3 +151,4 @@ struct OmitUserView_Previews: PreviewProvider {
         OmitUserView(viewModel: .init(container: .preview, user))
     }
 }
+#endif

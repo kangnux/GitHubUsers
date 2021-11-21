@@ -136,6 +136,7 @@ private extension RepositoryView {
     }
 }
 
+#if DEBUG
 struct RepositoryView_Previews: PreviewProvider {
     static let repository = RepositoryEntity(
         name: "linguist linguist linguist linguist linguist",
@@ -153,3 +154,4 @@ struct RepositoryView_Previews: PreviewProvider {
         RepositoryView(viewModel: .init(container: .preview, repository: repository))
     }
 }
+#endif

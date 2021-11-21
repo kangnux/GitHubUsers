@@ -93,8 +93,10 @@ extension ThankView {
     }
 }
 
+#if DEBUG
 struct ThankView_Previews: PreviewProvider {
     static var previews: some View {
         ThankView(viewModel: .init(container: .preview))
     }
 }
+#endif
