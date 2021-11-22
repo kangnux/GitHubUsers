@@ -60,10 +60,13 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 [GitHubUsers/Config.xcconfig](https://github.com/kangnux/GitHubUsers/blob/3176dafd95c8edb155b720ac8c37b396e74e0e64/GitHubUsers/Environments/Config.xcconfig)
 
 ## 画面スクリーンショット
-|ユーザ画面|ユーザ検索結果画面|リポジトリー画面|
-|---|---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142764765-a522de5b-5510-4d7e-bb03-640838c92137.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142784031-aa653fd5-98ac-4c6b-adce-072f86462236.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142764841-6c7160cc-e195-4fcf-9180-f298be5b5b7d.PNG width=540px>|
+|ユーザ画面|ユーザ検索結果画面|
+|---|---|
+|<img src=https://user-images.githubusercontent.com/14342048/142764765-a522de5b-5510-4d7e-bb03-640838c92137.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142784031-aa653fd5-98ac-4c6b-adce-072f86462236.PNG width=540px>|
 
+|リポジトリー画面|
+|---|
+|<img src=https://user-images.githubusercontent.com/14342048/142764841-6c7160cc-e195-4fcf-9180-f298be5b5b7d.PNG width=540px>|
 
 |Pinユーザ画面|Pinリポジトリー画面|
 |---|---|
