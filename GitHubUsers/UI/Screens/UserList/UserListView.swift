@@ -37,6 +37,9 @@ private extension UserListView {
         NavigationView {
             VStack(spacing: 4) {
                 inputContent
+                TagView(tags: $viewModel.tags,
+                        searchKey: $viewModel.searchKey)
+                    .frame(height: viewModel.tags.count > 0 ? 48 : 8)
                 ZStack {
                     userListContent
                     if viewModel.showIndicator {
@@ -48,6 +51,7 @@ private extension UserListView {
                     settingContent
                 }
             }
+            .background(OpenColor.GRAY.color(6))
             .navigationBarHidden(isShowCancel)
             .navigationTitle(localString.user())
         }

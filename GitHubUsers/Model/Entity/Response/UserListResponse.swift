@@ -28,15 +28,17 @@ extension UserListResponse {
     mutating func update(_ list: [UserEntity]) {
         _ = list.map { user in
             if let index = list.firstIndex(where: { $0.login == user.login }) {
-                self.list[index].name = user.name
-                self.list[index].url = user.url
-                self.list[index].htmlUrl = user.url
-                self.list[index].location = user.location
-                self.list[index].email = user.email
-                self.list[index].name = user.name
-                self.list[index].bio = user.bio
-                self.list[index].followers = user.followers
-                self.list[index].following = user.following
+                if self.list.count > index {
+                    self.list[index].name = user.name
+                    self.list[index].url = user.url
+                    self.list[index].htmlUrl = user.url
+                    self.list[index].location = user.location
+                    self.list[index].email = user.email
+                    self.list[index].name = user.name
+                    self.list[index].bio = user.bio
+                    self.list[index].followers = user.followers
+                    self.list[index].following = user.following
+                }
             }
         }
     }

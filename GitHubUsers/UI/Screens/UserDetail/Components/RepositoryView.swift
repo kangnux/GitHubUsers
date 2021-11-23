@@ -18,10 +18,13 @@ struct RepositoryView: View {
             languageContent
         }
         .padding()
+        .background(OpenColor.GRAY.color(1))
+        .clipShape(RoundedRectangle(cornerRadius: 8))
         .overlay(
             RoundedRectangle(cornerRadius: 8)
-                .stroke(GitHubColors.fetchColor(viewModel.repository.lanuage), lineWidth: 1.5)
+                .stroke(GitHubColors.fetchColor(viewModel.repository.lanuage), lineWidth: 1)
         )
+        
         .padding([.leading, .trailing], 8)
         
     }
@@ -54,7 +57,6 @@ private extension RepositoryView {
     var descriptionContent: some View {
         Text(viewModel.repository.description)
             .font(.system(.body, design: .rounded)).fontWeight(.regular)
-            .foregroundColor(OpenColor.GRAY.color(8))
     }
     
     var statusContent: some View {

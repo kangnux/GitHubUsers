@@ -10,6 +10,7 @@ import SwiftUI
 struct PinView: View {
     @ObservedObject private(set) var viewModel: PinViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
+    @Environment(\.colorScheme) var colorScheme
     @State private var selectedIndex = 0
     
     var body: some View {
@@ -24,6 +25,7 @@ struct PinView: View {
                     }
                 }
             }
+            .background(OpenColor.GRAY.color(6))
             .navigationTitle(localString.pin())
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -69,6 +71,8 @@ private extension PinView {
     var repositoriesContent: some View {
         ZStack {
             ScrollView(.vertical) {
+                Spacer()
+                    .frame(height: 2)
                 VStack(alignment: .leading) {
                     LazyVStack (alignment: .leading, spacing: 16) {
                         ForEach(viewModel.repositories) { repository in
@@ -88,6 +92,7 @@ private extension PinView {
                 emptyContent
             }
         }
+        .background(colorScheme == .dark ? Color.black : Color.white)
     }
     
     func detailsView(userInfo: UserEntity) -> some View {

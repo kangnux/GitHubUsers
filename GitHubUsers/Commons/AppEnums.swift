@@ -12,6 +12,7 @@ enum UserDefaultsKeys: String {
     case pinUserList = "pinUserList"
     case pinRepositories = "pinRepositories"
     case searchCount = "searchCount"
+    case searchHistory = "searchHistory"
 }
 
 enum UserSortType: String {

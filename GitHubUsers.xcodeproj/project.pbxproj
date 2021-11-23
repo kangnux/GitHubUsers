@@ -95,6 +95,8 @@
 		00897B03274387EC001A6A18 /* XcodeConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00897B02274387EC001A6A18 /* XcodeConfig.swift */; };
 		00897B0527438872001A6A18 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 00897B0427438872001A6A18 /* Config.xcconfig */; };
 		00897B0727438ADD001A6A18 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00897B0627438ADD001A6A18 /* AppEnvironment.swift */; };
+		00E337E7274BC79900681370 /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337E6274BC79900681370 /* TagEntity.swift */; };
+		00E337E9274BC80B00681370 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337E8274BC80B00681370 /* TagView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,6 +188,8 @@
 		00897B0427438872001A6A18 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		00897B0627438ADD001A6A18 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		00897B0827438E09001A6A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		00E337E6274BC79900681370 /* TagEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
+		00E337E8274BC80B00681370 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -218,6 +222,7 @@
 				00309BC42743AEEF00814913 /* OmitUserView.swift */,
 				00309BC72743B27300814913 /* OmitUserViewModel.swift */,
 				00309BD127445DE800814913 /* SearchBarView.swift */,
+				00E337E8274BC80B00681370 /* TagView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				00309BF42747D6A400814913 /* RepositoryEntity.swift */,
 				004E7D3A2748807B008FD000 /* PinUserEntity.swift */,
 				004E7D472748D09E008FD000 /* PinRepositoryEntity.swift */,
+				00E337E6274BC79900681370 /* TagEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -663,6 +669,7 @@
 				00897B03274387EC001A6A18 /* XcodeConfig.swift in Sources */,
 				00309BD02743D8C700814913 /* UIColor+Extension.swift in Sources */,
 				00897ABA27433370001A6A18 /* CodableHelper.swift in Sources */,
+				00E337E9274BC80B00681370 /* TagView.swift in Sources */,
 				004E7D3227484EFF008FD000 /* WebView.swift in Sources */,
 				00897B0027438681001A6A18 /* AppConstants.swift in Sources */,
 				00897A9B27431D01001A6A18 /* ContentView.swift in Sources */,
@@ -685,6 +692,7 @@
 				00309BE2274538C200814913 /* RepositoryService.swift in Sources */,
 				00897AF527436147001A6A18 /* View+Extension.swift in Sources */,
 				00897AB927433370001A6A18 /* SearchAPI.swift in Sources */,
+				00E337E7274BC79900681370 /* TagEntity.swift in Sources */,
 				00309BE72745A3D400814913 /* UserDetailViewModel.swift in Sources */,
 				004E7D3D27488768008FD000 /* AppSettingManager.swift in Sources */,
 				004E7D4A2748DA72008FD000 /* RepositoryViewModel.swift in Sources */,

@@ -23,6 +23,7 @@
 "noResults" = "There is no results for \n%@";
 "noPinItem" = "Add some pin to show here...";
 "countTitle" = "Number of searches %@";
+"delete" = "Delete";
 
 // UserDetail
 "mailto" = "mailto:%@";

@@ -18,7 +18,8 @@ struct SearchBarView: View {
                 Image(systemName: "magnifyingglass")
                 
                 TextField(
-                    NSLocalizedString(localString.search(), comment: "").stringValue,
+                    NSLocalizedString(localString.search(),
+                                      comment: localString.empty()).stringValue,
                     text: $editSearch,
                     onEditingChanged: { isEditing in
                         withAnimation {
@@ -27,7 +28,6 @@ struct SearchBarView: View {
                     }, onCommit: {
                         searchKey = editSearch
                     })
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
                     .shadow(color: isShowCancel ? OpenColor.CYAN.color(5) : .clear, radius: 3)
                     .submitLabel(.search)
                 
@@ -42,7 +42,6 @@ struct SearchBarView: View {
             .foregroundColor(.secondary)
             .background(Color(.secondarySystemBackground))
             .cornerRadius(10.0)
-            
             if isShowCancel  {
                 Button(localString.cancel()) {
                     UIApplication.shared.endEditing()
@@ -50,10 +49,15 @@ struct SearchBarView: View {
                         isShowCancel = false
                     }
                 }
-                .foregroundColor(Color(.systemBlue))
+                .foregroundColor(OpenColor.BLUE.color(1))
             }
         }
         .padding(.horizontal)
+        .onChange(of: searchKey) { _ in
+            if searchKey != editSearch {
+                editSearch = searchKey
+            }
+        }
     }
 }
 struct SearchBarView_Previews: PreviewProvider {
