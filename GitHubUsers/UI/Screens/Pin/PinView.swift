@@ -72,7 +72,7 @@ private extension PinView {
         ZStack {
             ScrollView(.vertical) {
                 Spacer()
-                    .frame(height: 2)
+                    .frame(height: 36)
                 VStack(alignment: .leading) {
                     LazyVStack (alignment: .leading, spacing: 16) {
                         ForEach(viewModel.repositories) { repository in
