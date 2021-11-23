@@ -79,4 +79,17 @@ class AppSettingManager: NSObject {
     func updateSearchCount(_ count: Int) {
         UserDefaultsManager.searchCount = count
     }
+    
+    func fetchSearchHistory() -> [TagEntity] {
+        if let list = UserDefaultsManager.searchHistory {
+            return list
+        }
+        
+        return []
+    }
+    
+    func updateSearchHistory(_ list: [TagEntity])  {
+        UserDefaultsManager.searchHistory = list
+    }
+    
 }

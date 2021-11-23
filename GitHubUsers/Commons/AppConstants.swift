@@ -22,7 +22,7 @@ class ApplicationUtil {
 
 class Constants {
     static let pageUpperLimit: Int = 1
-    static let maxResultCount: Int = 20
+    static let maxSerachHistoryCount: Int = 20
     static let searchKeySuffix = "+in:fullname+type:user"
     static let userDefaultsSuitName = "GitHubUsers"
 }

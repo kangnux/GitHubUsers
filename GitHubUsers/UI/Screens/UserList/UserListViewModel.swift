@@ -17,6 +17,7 @@ class UserListViewModel: ObservableObject {
     @Published var apiAlertBag = ApiAlertBag()
     @Published var routingState: Routing
     @Published var searchKey: String = localString.empty()
+    @Published var tags: [TagEntity] = []
     @Published var userListInfo: UserListResponse = UserListResponse()
     @Published var showIndicator = false
     @Published var searchCount: SearchCount = .ten
@@ -37,7 +38,6 @@ class UserListViewModel: ObservableObject {
     }
     
     func fetchUserList(_ isShowIndicator: Bool = true) {
-        guard !showIndicator else { return }
         userListInfo = UserListResponse()
         isShowEmpty = false
         showIndicator = isShowIndicator
@@ -79,9 +79,15 @@ class UserListViewModel: ObservableObject {
     
     func fetchSettting() {
         let count = AppSettingManager.shared.fetchSearchCount()
+        let tags = AppSettingManager.shared.fetchSearchHistory()
         DispatchQueue.main.async {
             self.searchCount = SearchCount.build(count)
-            self.fetchUserList()
+            self.tags = tags
+            if tags.count > 0 {
+                self.searchKey = tags.first?.text ?? localString.empty()
+            } else {
+                self.fetchUserList()
+            }
         }
     }
     

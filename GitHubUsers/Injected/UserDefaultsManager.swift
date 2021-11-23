@@ -34,6 +34,15 @@ class UserDefaultsManager: NSObject {
             }
         }
     }
+    
+    static var searchHistory: [TagEntity]? {
+        get { UserDefaults.getSearchHistory() }
+        set {
+            if let list = newValue {
+                UserDefaults.setSearchHistory(list)
+            }
+        }
+    }
 }
 
 extension UserDefaults {
@@ -83,6 +92,25 @@ extension UserDefaults {
     fileprivate static func setSearchCount(_ count: Int) {
         let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
         userDefaults?.set(count, forKey: UserDefaultsKeys.searchCount.rawValue)
+        userDefaults?.synchronize()
+    }
+    
+    fileprivate static func getSearchHistory() -> [TagEntity]? {
+        let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
+        if let data = userDefaults?.data(forKey: UserDefaultsKeys.searchHistory.rawValue) {
+            let decoder = JSONDecoder()
+            let list = try? decoder.decode([TagEntity].self, from: data)
+            return list
+        }
+        
+        return nil
+    }
+    
+    fileprivate static func setSearchHistory(_ list: [TagEntity]) {
+        let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
+        let encoder = JSONEncoder()
+        let encodedData = try? encoder.encode(list)
+        userDefaults?.set(encodedData, forKey: UserDefaultsKeys.searchHistory.rawValue)
         userDefaults?.synchronize()
     }
 }

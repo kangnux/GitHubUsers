@@ -129,7 +129,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 41 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
     struct localizable {
       /// en translation: 
       ///
@@ -187,6 +187,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let dataError = Rswift.StringResource(key: "DataError", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Delete
+      ///
+      /// Locales: en, ja
+      static let delete = Rswift.StringResource(key: "delete", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Followers %@ • Following %@
       ///
       /// Locales: en, ja
@@ -506,6 +510,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("DataError", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Delete
+      ///
+      /// Locales: en, ja
+      static func delete(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("delete", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "delete"
+        }
+
+        return NSLocalizedString("delete", bundle: bundle, comment: "")
       }
 
       /// en translation: Followers %@ • Following %@
