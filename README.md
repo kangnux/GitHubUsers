@@ -6,18 +6,19 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 
 #### アーキテクチャ：**MVVM**　
 ![MVVM](https://user-images.githubusercontent.com/14342048/142783643-ba4d4900-7676-4baa-ab14-e5ee62e69350.png)
-* View:  ViewModelの内容の表示、ユーザのアクションをViewModelと連携。
+* View:  ViewModelの内容の表示、ユーザのアクションをViewModelへお知らせ。
 * ViewModel：AppStateのデータ監視、Serviceと通信しデータ取得、Viewに表示するデータの更新。
 * Model：App内データ型の定義、各モジュール用のデータ解析と構築手段。
-* AppState：全領域参照できるデータの保持、[CurrentValueSubject](https://developer.apple.com/documentation/combine/currentvaluesubject)利用しpublish機能付与。
+* AppState：全領域参照できるデータの保持。（[CurrentValueSubject](https://developer.apple.com/documentation/combine/currentvaluesubject)利用しpublish機能付き）
 * Service：ViewModelからのデータ処理を処理し、StubとRealの処理を振り分け。
 * Repository：外部サーバと通信する。
 
 参照情報：[Clean Architecture for SwiftUI ](https://nalexn.github.io/clean-architecture-swiftui/)
 
 #### 画面構成：
-* ユーザ画面：キーワード利用しユーザを検索し、検索したユーザ情報を表示する。
-	*　検索したユーザ一覧をタップし選択したユーザのレポジトリ画面を表示する。 	
+* ユーザ画面：キーワード利用しユーザを検索し、検索したユーザ情報を表示する。　
+	* 検索した履歴を検索Barの下に表示され、タップすると再び検索できます。（長押しで出たメニューで削除できる、上限20件設定済み） 
+	* 検索したユーザ一覧をタップし選択したユーザのレポジトリ画面を表示する。 	
 	* レポジトリ画面(ユーザ詳細)：ユーザ詳細情報とリポジトリを表示する。
 	* ユーザとリポジトリにPin（お気に入り）機能あり。
 	* ネットワーク負担を減らすために、毎回検索件数に変更機能付き。
@@ -60,20 +61,23 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 [GitHubUsers/Config.xcconfig](https://github.com/kangnux/GitHubUsers/blob/3176dafd95c8edb155b720ac8c37b396e74e0e64/GitHubUsers/Environments/Config.xcconfig)
 
 ## 画面スクリーンショット
-|ユーザ画面|ユーザ検索結果画面|
+
+|ユーザ画面|検索履歴長押しメニュー|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142764765-a522de5b-5510-4d7e-bb03-640838c92137.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142784031-aa653fd5-98ac-4c6b-adce-072f86462236.PNG width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/142960483-e357c14a-2f44-437f-bfa7-b66876fd82f0.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142960528-40616ba3-b15b-4359-af53-8a05329a78e4.PNG width=540px>|
 
 |リポジトリー画面|
 |---|
-|<img src=https://user-images.githubusercontent.com/14342048/142764841-6c7160cc-e195-4fcf-9180-f298be5b5b7d.PNG width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/142960573-b821b68a-8953-4c96-9aae-d260d8fbde7b.PNG width=540px>|
 
 |Pinユーザ画面|Pinリポジトリー画面|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142764845-8ed63d0d-1a28-4aa6-9bb3-6da0e2d4d051.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142764848-59bc3587-2301-4bda-b7e7-b9f04aaa31a9.PNG width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/142960601-5c13d5a3-3e0d-44bf-956c-d8dc8492dad2.PNG width=540px>| <img src=https://user-images.githubusercontent.com/14342048/142960628-956ac4c0-7dc5-424c-828b-2156086cd56b.PNG width=540px>|
 
 ## その他
 これからもどんどん機能を作って導入する予定です。
+
+- 2021.11.23 検索履歴保存機能機能追加
 
 SwiftUI、Combine、Rxswiftなどの活用で技術力を上げましょう〜🧗
 
