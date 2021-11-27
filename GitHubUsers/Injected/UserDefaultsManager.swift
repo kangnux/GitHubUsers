@@ -35,6 +35,15 @@ class UserDefaultsManager: NSObject {
         }
     }
     
+    static var gitHubApiToken: String? {
+        get { UserDefaults.getGitHubApiToken() }
+        set {
+            if let value = newValue {
+                UserDefaults.setGitHubApiToken(value)
+            }
+        }
+    }
+    
     static var searchHistory: [TagEntity]? {
         get { UserDefaults.getSearchHistory() }
         set {
@@ -81,6 +90,17 @@ extension UserDefaults {
         let encoder = JSONEncoder()
         let encodedData = try? encoder.encode(list)
         userDefaults?.set(encodedData, forKey: UserDefaultsKeys.pinRepositories.rawValue)
+        userDefaults?.synchronize()
+    }
+    
+    fileprivate static func getGitHubApiToken() -> String? {
+        let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
+        return userDefaults?.string(forKey: UserDefaultsKeys.gitHubApiToken.rawValue)
+    }
+    
+    fileprivate static func setGitHubApiToken(_ token: String) {
+        let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
+        userDefaults?.set(token, forKey: UserDefaultsKeys.gitHubApiToken.rawValue)
         userDefaults?.synchronize()
     }
     

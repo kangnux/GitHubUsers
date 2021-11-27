@@ -44,7 +44,7 @@ extension ApiAlertBag {
         if let error = error as? ApiError {
             let alert = Alert(title: Text(error.status.title),
                               message: Text(error.status.message),
-                              dismissButton: .default(localString.close.text))
+                              dismissButton: .default(localString.close.text, action: { self.removeAlert() }))
             let item = AlertItem(alert)
             addAlert(item)
         }

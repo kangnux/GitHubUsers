@@ -129,7 +129,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 44 localization keys.
     struct localizable {
       /// en translation: 
       ///
@@ -163,6 +163,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let noPinItem = Rswift.StringResource(key: "noPinItem", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize
+      ///
+      /// Locales: en, ja
+      static let authorize = Rswift.StringResource(key: "authorize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Auto
       ///
       /// Locales: en, ja
@@ -243,6 +247,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let showPrivate = Rswift.StringResource(key: "showPrivate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Profile
+      ///
+      /// Locales: en, ja
+      static let profile = Rswift.StringResource(key: "profile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Public
       ///
       /// Locales: en, ja
@@ -420,6 +428,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("noPinItem", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authorize
+      ///
+      /// Locales: en, ja
+      static func authorize(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authorize", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authorize"
+        }
+
+        return NSLocalizedString("authorize", bundle: bundle, comment: "")
       }
 
       /// en translation: Auto
@@ -724,6 +747,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("showPrivate", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Profile
+      ///
+      /// Locales: en, ja
+      static func profile(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("profile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "profile"
+        }
+
+        return NSLocalizedString("profile", bundle: bundle, comment: "")
       }
 
       /// en translation: Public

@@ -29,6 +29,13 @@ struct MainView: View {
                             .scaledToFit()
                         localString.pin.text
                     }
+                profileViewContent.tag(MainViewTab.profile)
+                    .tabItem {
+                        Image(systemName: "person.crop.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                        localString.profile.text
+                    }
                 thankViewContent.tag(MainViewTab.thank)
                     .tabItem {
                         Image(systemName: "flame.circle.fill")
@@ -51,6 +58,10 @@ private extension MainView {
     
     var pinViewContent: some View {
         PinView(viewModel: viewModel.pinViewModel, apiAlertBag: viewModel.pinViewModel.apiAlertBag)
+    }
+    
+    var profileViewContent: some View {
+        ProfileView(viewModel: viewModel.profileViewModel)
     }
     
     var thankViewContent: some View {

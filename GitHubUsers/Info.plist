@@ -2,9 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>ServerURL</key>
-	<string>$(ServerURL)</string>
+	<key>RestApiURL</key>
+	<string>$(RestApiURL)</string>
 	<key>GitHubApiToken</key>
 	<string>$(GitHubApiToken)</string>
+	<key>ClientID</key>
+	<string>$(ClientID)</string>
+	<key>RedirectURL</key>
+	<string>$(RedirectURL)</string>
+	<key>ClientServer</key>
+	<string>$(ClientServer)</string>
+	<key>AuthBaseURL</key>
+	<string>$(AuthBaseURL)</string>
 </dict>
 </plist>

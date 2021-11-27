@@ -97,6 +97,15 @@
 		00897B0727438ADD001A6A18 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00897B0627438ADD001A6A18 /* AppEnvironment.swift */; };
 		00E337E7274BC79900681370 /* TagEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337E6274BC79900681370 /* TagEntity.swift */; };
 		00E337E9274BC80B00681370 /* TagView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337E8274BC80B00681370 /* TagView.swift */; };
+		00E337EC274C92D400681370 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337EB274C92D400681370 /* ProfileView.swift */; };
+		00E337EE274C92E700681370 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337ED274C92E700681370 /* ProfileViewModel.swift */; };
+		00E337F0274C9A4700681370 /* LoginWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337EF274C9A4700681370 /* LoginWebView.swift */; };
+		00E337F2274CA86700681370 /* LoginWebViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337F1274CA86700681370 /* LoginWebViewModel.swift */; };
+		00E337F4274D16E800681370 /* AccessTokenResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337F3274D16E800681370 /* AccessTokenResponse.swift */; };
+		00E337F627520EA800681370 /* AuthAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337F527520EA800681370 /* AuthAPI.swift */; };
+		00E337F827520EBD00681370 /* GitTokenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337F727520EBD00681370 /* GitTokenItem.swift */; };
+		00E337FA27520FD900681370 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337F927520FD900681370 /* AuthService.swift */; };
+		00E337FC2752107600681370 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337FB2752107600681370 /* AuthRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -190,6 +199,15 @@
 		00897B0827438E09001A6A18 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		00E337E6274BC79900681370 /* TagEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagEntity.swift; sourceTree = "<group>"; };
 		00E337E8274BC80B00681370 /* TagView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagView.swift; sourceTree = "<group>"; };
+		00E337EB274C92D400681370 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		00E337ED274C92E700681370 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		00E337EF274C9A4700681370 /* LoginWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebView.swift; sourceTree = "<group>"; };
+		00E337F1274CA86700681370 /* LoginWebViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWebViewModel.swift; sourceTree = "<group>"; };
+		00E337F3274D16E800681370 /* AccessTokenResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessTokenResponse.swift; sourceTree = "<group>"; };
+		00E337F527520EA800681370 /* AuthAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthAPI.swift; sourceTree = "<group>"; };
+		00E337F727520EBD00681370 /* GitTokenItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GitTokenItem.swift; sourceTree = "<group>"; };
+		00E337F927520FD900681370 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		00E337FB2752107600681370 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -250,6 +268,8 @@
 				004E7D3127484EFF008FD000 /* WebView.swift */,
 				004E7D52274931F0008FD000 /* ApiAlertBag.swift */,
 				004E7D5427493278008FD000 /* AlertItem.swift */,
+				00E337EF274C9A4700681370 /* LoginWebView.swift */,
+				00E337F1274CA86700681370 /* LoginWebViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -369,6 +389,7 @@
 		00897AAA27433370001A6A18 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
+				00E337F527520EA800681370 /* AuthAPI.swift */,
 				00309BEE2747D57B00814913 /* RepositoriesAPI.swift */,
 				00309BD327452B5100814913 /* UsersAPI.swift */,
 				00897AAB27433370001A6A18 /* SearchAPI.swift */,
@@ -379,6 +400,7 @@
 		00897AAF27433370001A6A18 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				00E337F727520EBD00681370 /* GitTokenItem.swift */,
 				004E7D452748CCFB008FD000 /* GitReposOwner.swift */,
 				00309BF02747D58600814913 /* GitReposItem.swift */,
 				00309BF12747D58600814913 /* GitReposList.swift */,
@@ -420,6 +442,7 @@
 				00897AD827433C6E001A6A18 /* UserListRepository.swift */,
 				00897ADA274343C9001A6A18 /* BaseRepository.swift */,
 				00309BE32745392700814913 /* UserRepository.swift */,
+				00E337FB2752107600681370 /* AuthRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -439,6 +462,7 @@
 			children = (
 				00897ADF274354AE001A6A18 /* UserListResponse.swift */,
 				00309BF62747D7F700814913 /* RepositoryListResponse.swift */,
+				00E337F3274D16E800681370 /* AccessTokenResponse.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -457,6 +481,7 @@
 			children = (
 				00897AE827435CDA001A6A18 /* UserListService.swift */,
 				00309BE1274538C200814913 /* RepositoryService.swift */,
+				00E337F927520FD900681370 /* AuthService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -481,6 +506,7 @@
 		00897AEE27436058001A6A18 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				00E337EA274C92C500681370 /* Profile */,
 				004E7D3327487570008FD000 /* Main */,
 				004E7D3E27488ACF008FD000 /* Pin */,
 				004E7D4B2748F376008FD000 /* Thank */,
@@ -532,6 +558,15 @@
 				004E7D5027492B45008FD000 /* URLConfiguration.swift */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		00E337EA274C92C500681370 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				00E337EB274C92D400681370 /* ProfileView.swift */,
+				00E337ED274C92E700681370 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -633,7 +668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "#/opt/homebrew/bin/rswift generate \"$SRCROOT/GitHubUsers/Resources/R.generated.swift\"\n";
+			shellScript = "/opt/homebrew/bin/rswift generate \"$SRCROOT/GitHubUsers/Resources/R.generated.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -648,6 +683,7 @@
 				00897AF027436088001A6A18 /* UserListViewModel.swift in Sources */,
 				00309BE42745392700814913 /* UserRepository.swift in Sources */,
 				00309BE02745379100814913 /* Int+Extension.swift in Sources */,
+				00E337FA27520FD900681370 /* AuthService.swift in Sources */,
 				00897AB627433370001A6A18 /* APIHelper.swift in Sources */,
 				004E7D462748CCFB008FD000 /* GitReposOwner.swift in Sources */,
 				00897AFA274380CE001A6A18 /* APIConfig.swift in Sources */,
@@ -675,13 +711,16 @@
 				00897A9B27431D01001A6A18 /* ContentView.swift in Sources */,
 				00309BD827452B5D00814913 /* GitSearchUserResponse.swift in Sources */,
 				00897ABE27433370001A6A18 /* SearchUserResponse.swift in Sources */,
+				00E337F0274C9A4700681370 /* LoginWebView.swift in Sources */,
 				00897AC227433370001A6A18 /* Configuration.swift in Sources */,
 				00309BDE274533DC00814913 /* UserEntity.swift in Sources */,
 				004E7D5527493278008FD000 /* AlertItem.swift in Sources */,
 				00897AFC274384AA001A6A18 /* RequestAdapterAndRetrier.swift in Sources */,
 				00309BC52743AEEF00814913 /* OmitUserView.swift in Sources */,
+				00E337F827520EBD00681370 /* GitTokenItem.swift in Sources */,
 				00897AE327435506001A6A18 /* OmitUserEntity.swift in Sources */,
 				004E7D3B2748807B008FD000 /* PinUserEntity.swift in Sources */,
+				00E337EC274C92D400681370 /* ProfileView.swift in Sources */,
 				00897AEC27435E4B001A6A18 /* UserListRequest.swift in Sources */,
 				00309BDC27452F4900814913 /* Application+Extension.swift in Sources */,
 				004E7D3027483A17008FD000 /* ViewModifier+Extension.swift in Sources */,
@@ -694,6 +733,8 @@
 				00897AB927433370001A6A18 /* SearchAPI.swift in Sources */,
 				00E337E7274BC79900681370 /* TagEntity.swift in Sources */,
 				00309BE72745A3D400814913 /* UserDetailViewModel.swift in Sources */,
+				00E337F4274D16E800681370 /* AccessTokenResponse.swift in Sources */,
+				00E337FC2752107600681370 /* AuthRepository.swift in Sources */,
 				004E7D3D27488768008FD000 /* AppSettingManager.swift in Sources */,
 				004E7D4A2748DA72008FD000 /* RepositoryViewModel.swift in Sources */,
 				00897ABB27433370001A6A18 /* JSONEncodableEncoding.swift in Sources */,
@@ -705,6 +746,8 @@
 				00309BFA2747DC6F00814913 /* RepositoryView.swift in Sources */,
 				00897A9927431D01001A6A18 /* GitHubUsersApp.swift in Sources */,
 				00309BEF2747D57B00814913 /* RepositoriesAPI.swift in Sources */,
+				00E337F627520EA800681370 /* AuthAPI.swift in Sources */,
+				00E337EE274C92E700681370 /* ProfileViewModel.swift in Sources */,
 				004E7D352748757F008FD000 /* MainView.swift in Sources */,
 				00897ABC27433370001A6A18 /* APIs.swift in Sources */,
 				00309BF32747D58600814913 /* GitReposList.swift in Sources */,
@@ -721,6 +764,7 @@
 				00309BD227445DE800814913 /* SearchBarView.swift in Sources */,
 				00309BF72747D7F700814913 /* RepositoryListResponse.swift in Sources */,
 				00309BDA27452B5D00814913 /* GitUserInfo.swift in Sources */,
+				00E337F2274CA86700681370 /* LoginWebViewModel.swift in Sources */,
 				00897ACF274339C2001A6A18 /* Publisher+WeakAssign.swift in Sources */,
 				00309BD927452B5D00814913 /* GitSearchUserItem.swift in Sources */,
 				00897AB827433370001A6A18 /* JSONValue.swift in Sources */,
@@ -888,7 +932,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -919,7 +963,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
