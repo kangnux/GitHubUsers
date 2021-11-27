@@ -139,18 +139,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let errorCode = Rswift.StringResource(key: "ErrorCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please check your input.
+      /// en translation:  Please check your input .
       ///
       /// Locales: en, ja
       static let checkInput = Rswift.StringResource(key: "CheckInput", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please retry later.
+      /// en translation:  Please retry later .
       ///
       /// Locales: en, ja
       static let retryLater = Rswift.StringResource(key: "RetryLater", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please update the token.
-      ///
-      /// Locales: en, ja
-      static let updateToken = Rswift.StringResource(key: "UpdateToken", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: -
       ///
       /// Locales: en, ja
@@ -307,6 +303,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let unprocessableEntity = Rswift.StringResource(key: "UnprocessableEntity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Update the token local !   Or you can Authorize in Profile tab .
+      ///
+      /// Locales: en, ja
+      static let updateToken = Rswift.StringResource(key: "UpdateToken", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: User
       ///
       /// Locales: en, ja
@@ -352,7 +352,7 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
-      /// en translation:  Please check your input.
+      /// en translation:  Please check your input .
       ///
       /// Locales: en, ja
       static func checkInput(preferredLanguages: [String]? = nil) -> String {
@@ -367,7 +367,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("CheckInput", bundle: bundle, comment: "")
       }
 
-      /// en translation:  Please retry later.
+      /// en translation:  Please retry later .
       ///
       /// Locales: en, ja
       static func retryLater(preferredLanguages: [String]? = nil) -> String {
@@ -380,21 +380,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("RetryLater", bundle: bundle, comment: "")
-      }
-
-      /// en translation:  Please update the token.
-      ///
-      /// Locales: en, ja
-      static func updateToken(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("UpdateToken", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "UpdateToken"
-        }
-
-        return NSLocalizedString("UpdateToken", bundle: bundle, comment: "")
       }
 
       /// en translation: -
@@ -988,6 +973,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("UnprocessableEntity", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Update the token local !   Or you can Authorize in Profile tab .
+      ///
+      /// Locales: en, ja
+      static func updateToken(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("UpdateToken", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "UpdateToken"
+        }
+
+        return NSLocalizedString("UpdateToken", bundle: bundle, comment: "")
       }
 
       /// en translation: User

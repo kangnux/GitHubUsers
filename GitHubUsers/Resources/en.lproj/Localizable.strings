@@ -62,7 +62,7 @@
 "ConnectError" = "Connect Error";
 "DataError" = "Data Error";
 "Close" = "Close";
-"RetryLater" = "\nPlease retry later.";
-"UpdateToken" = "\nPlease update the token.";
-"CheckInput" = "\nPlease check your input.";
+"RetryLater" = "\nPlease retry later .";
+"UpdateToken" = "Update the token local ! \n Or you can Authorize in Profile tab .";
+"CheckInput" = "\nPlease check your input .";
 "icon8" = "ICONS8";
