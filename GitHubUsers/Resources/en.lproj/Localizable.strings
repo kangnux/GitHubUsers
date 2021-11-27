@@ -14,6 +14,7 @@
 // Main
 "search" = "Search";
 "pin" = "Pin";
+"profile" = "Profile";
 "setting" = "Setting";
 
 // UserList
@@ -30,6 +31,12 @@
 "showPublic" = "Public";
 "showPrivate" = "Private";
 "repositories" = "Repositories";
+
+// Profile
+"authorize" = "Authorize";
+"lastDate" = "Last Update: %@";
+"authSuccess" = "Authorize Success !";
+"authFail" = "Authorize Fail !";
 
 // Thank
 "dark" = "Dark";
@@ -55,7 +62,7 @@
 "ConnectError" = "Connect Error";
 "DataError" = "Data Error";
 "Close" = "Close";
-"RetryLater" = "\nPlease retry later.";
-"UpdateToken" = "\nPlease update the token.";
-"CheckInput" = "\nPlease check your input.";
+"RetryLater" = "\nPlease retry later .";
+"UpdateToken" = "Update the token local ! \n Or you can Authorize in Profile tab .";
+"CheckInput" = "\nPlease check your input .";
 "icon8" = "ICONS8";

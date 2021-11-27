@@ -66,6 +66,15 @@ class AppSettingManager: NSObject {
         }
     }
     
+    func fetchGitHubApiToken() -> TokenEntity? {
+        return UserDefaultsManager.gitHubApiToken
+    }
+    
+    func updateGitHubApiToken(_ token: String) {
+        let tokenItem = TokenEntity(token: token)
+        UserDefaultsManager.gitHubApiToken = tokenItem
+    }
+    
     func fetchSearchCount() -> Int {
         if let value = UserDefaultsManager.searchCount, value > 0 {
             return value

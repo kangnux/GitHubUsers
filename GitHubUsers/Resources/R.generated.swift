@@ -129,7 +129,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 42 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 47 localization keys.
     struct localizable {
       /// en translation: 
       ///
@@ -139,18 +139,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let errorCode = Rswift.StringResource(key: "ErrorCode", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please check your input.
+      /// en translation:  Please check your input .
       ///
       /// Locales: en, ja
       static let checkInput = Rswift.StringResource(key: "CheckInput", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please retry later.
+      /// en translation:  Please retry later .
       ///
       /// Locales: en, ja
       static let retryLater = Rswift.StringResource(key: "RetryLater", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation:  Please update the token.
-      ///
-      /// Locales: en, ja
-      static let updateToken = Rswift.StringResource(key: "UpdateToken", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: -
       ///
       /// Locales: en, ja
@@ -163,6 +159,18 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let noPinItem = Rswift.StringResource(key: "noPinItem", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize
+      ///
+      /// Locales: en, ja
+      static let authorize = Rswift.StringResource(key: "authorize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize Fail !
+      ///
+      /// Locales: en, ja
+      static let authFail = Rswift.StringResource(key: "authFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize Success !
+      ///
+      /// Locales: en, ja
+      static let authSuccess = Rswift.StringResource(key: "authSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Auto
       ///
       /// Locales: en, ja
@@ -211,6 +219,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let icon8 = Rswift.StringResource(key: "icon8", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Last Update: %@
+      ///
+      /// Locales: en, ja
+      static let lastDate = Rswift.StringResource(key: "lastDate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Light
       ///
       /// Locales: en, ja
@@ -243,6 +255,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let showPrivate = Rswift.StringResource(key: "showPrivate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Profile
+      ///
+      /// Locales: en, ja
+      static let profile = Rswift.StringResource(key: "profile", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Public
       ///
       /// Locales: en, ja
@@ -287,6 +303,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let unprocessableEntity = Rswift.StringResource(key: "UnprocessableEntity", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Update the token local !   Or you can Authorize in Profile tab .
+      ///
+      /// Locales: en, ja
+      static let updateToken = Rswift.StringResource(key: "UpdateToken", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: User
       ///
       /// Locales: en, ja
@@ -332,7 +352,7 @@ struct R: Rswift.Validatable {
         return String(format: format, locale: locale, value1)
       }
 
-      /// en translation:  Please check your input.
+      /// en translation:  Please check your input .
       ///
       /// Locales: en, ja
       static func checkInput(preferredLanguages: [String]? = nil) -> String {
@@ -347,7 +367,7 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("CheckInput", bundle: bundle, comment: "")
       }
 
-      /// en translation:  Please retry later.
+      /// en translation:  Please retry later .
       ///
       /// Locales: en, ja
       static func retryLater(preferredLanguages: [String]? = nil) -> String {
@@ -360,21 +380,6 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("RetryLater", bundle: bundle, comment: "")
-      }
-
-      /// en translation:  Please update the token.
-      ///
-      /// Locales: en, ja
-      static func updateToken(preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          return NSLocalizedString("UpdateToken", bundle: hostingBundle, comment: "")
-        }
-
-        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "UpdateToken"
-        }
-
-        return NSLocalizedString("UpdateToken", bundle: bundle, comment: "")
       }
 
       /// en translation: -
@@ -420,6 +425,51 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("noPinItem", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authorize
+      ///
+      /// Locales: en, ja
+      static func authorize(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authorize", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authorize"
+        }
+
+        return NSLocalizedString("authorize", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authorize Fail !
+      ///
+      /// Locales: en, ja
+      static func authFail(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authFail", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authFail"
+        }
+
+        return NSLocalizedString("authFail", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authorize Success !
+      ///
+      /// Locales: en, ja
+      static func authSuccess(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authSuccess", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authSuccess"
+        }
+
+        return NSLocalizedString("authSuccess", bundle: bundle, comment: "")
       }
 
       /// en translation: Auto
@@ -604,6 +654,23 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("icon8", bundle: bundle, comment: "")
       }
 
+      /// en translation: Last Update: %@
+      ///
+      /// Locales: en, ja
+      static func lastDate(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("lastDate", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "lastDate"
+        }
+
+        let format = NSLocalizedString("lastDate", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
+      }
+
       /// en translation: Light
       ///
       /// Locales: en, ja
@@ -724,6 +791,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("showPrivate", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Profile
+      ///
+      /// Locales: en, ja
+      static func profile(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("profile", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "profile"
+        }
+
+        return NSLocalizedString("profile", bundle: bundle, comment: "")
       }
 
       /// en translation: Public
@@ -891,6 +973,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("UnprocessableEntity", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Update the token local !   Or you can Authorize in Profile tab .
+      ///
+      /// Locales: en, ja
+      static func updateToken(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("UpdateToken", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "UpdateToken"
+        }
+
+        return NSLocalizedString("UpdateToken", bundle: bundle, comment: "")
       }
 
       /// en translation: User

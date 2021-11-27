@@ -18,6 +18,7 @@ extension AppState {
     struct UserData: Equatable {
         var pinLoginList: [UserEntity.Login] = AppSettingManager.shared.fetchPinUserList().map { $0.login }
         var pinRepositories: [PinRepositoryEntity] = AppSettingManager.shared.fetchPinRepositories()
+        var authorizeState: TokenAuthorizeState = .invalid
     }
 }
 

@@ -25,14 +25,16 @@ struct AppEnvironment {
     private static func configRepositories(appState: Store<AppState>) -> DIContainer.Repositories {
         let userListRepository = RealUserListRepository()
         let userRepository = RealUserRepository()
+        let authRepository = RealAuthRepository()
         
-        return .init(userListRepository: userListRepository, userRepository: userRepository)
+        return .init(userListRepository: userListRepository, userRepository: userRepository, authRepository: authRepository)
     }
     
     private static func configServices(appState: Store<AppState>, repositories: DIContainer.Repositories) -> DIContainer.Services {
         let userListService = RealUserListService(repository: repositories.userListRepository, appState: appState)
         let repositoryService = RealRepositoryService(repository: repositories.userRepository, appState: appState)
-        return .init(userListService: userListService, repositoryService: repositoryService)
+        let authService = RealAuthService(repository: repositories.authRepository, appState: appState)
+        return .init(userListService: userListService, repositoryService: repositoryService, authService: authService)
     }
     
     private static func initSystemConfit() {
@@ -44,5 +46,6 @@ extension DIContainer {
     struct Repositories {
         let userListRepository: UserListRepository
         let userRepository: UserRepository
+        let authRepository: AuthRepository
     }
 }

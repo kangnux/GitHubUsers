@@ -7,6 +7,11 @@ info:
 host: "api.github.com"
 basePath: "/v3"
 tags:
+- name: "Auth"
+  description: "Auth API"
+  externalDocs:
+    description: "Docs"
+    url: "https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps"
 - name: "Search"
   description: "Search API"
   externalDocs:
@@ -25,6 +30,84 @@ tags:
 schemes:
 - "https"
 paths:
+  /authorize:
+    get:
+      tags:
+      - "Auth"
+      summary: "Authorize"
+      description: ""
+      operationId: "requestAuthorize"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: query
+        name: client_id
+        required: true
+        type: string
+      - in: query
+        name: redirect_uri
+        required: true
+        type: string
+      - in: query
+        name: state
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "OK"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+    
+  /access_token:
+    post:
+      tags:
+      - "Auth"
+      summary: "Fetch Token"
+      description: ""
+      operationId: "requestAccessToken"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: header
+        name: Accept
+        required: true
+        type: string
+        default: "application/json"
+      - in: query
+        name: client_id
+        required: true
+        type: string
+      - in: query
+        name: client_secret
+        required: true
+        type: string
+      - in: query
+        name: code
+        required: true
+        type: string
+      - in: query
+        name: redirect_uri
+        required: true
+        type: string
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitTokenItem"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
   /search/users:
     get:
       tags:
@@ -187,6 +270,18 @@ paths:
         "503":
           description: "Service Unavailable"
 definitions:
+  GitTokenItem:
+    type: "object"
+    properties:
+      access_token:
+        type: "string"
+        example: "gho_16C7e42F292c6912E7710c838347Ae178B4a"
+      scope:
+        type: "string"
+        example: "repo,gist"
+      token_type:
+        type: "string"
+        example: "bearer"
   GitSearchUserResponse:
     type: "object"
     properties:

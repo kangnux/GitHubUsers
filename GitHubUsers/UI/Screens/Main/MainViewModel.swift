@@ -16,6 +16,7 @@ class MainViewModel: ObservableObject {
     @Published var tab: MainViewTab
     @Published var userListViewModel: UserListViewModel
     @Published var pinViewModel: PinViewModel
+    @Published var profileViewModel: ProfileViewModel
     @Published var thankViewModel: ThankViewModel
     
     init(container: DIContainer) {
@@ -24,6 +25,7 @@ class MainViewModel: ObservableObject {
         _tab = .init(initialValue: appState.value.routing.mainTab.tab)
         userListViewModel = .init(container: container)
         pinViewModel = .init(container: container)
+        profileViewModel = .init(container: container)
         thankViewModel = .init(container: container)
         
         cancelBag.collect {

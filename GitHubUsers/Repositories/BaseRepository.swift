@@ -14,8 +14,10 @@ protocol BaseRepository {
 }
 
 extension BaseRepository {
-    func convertSingle<T: Codable>(function: String = #function,
+    func convertSingle<T: Codable>(apiType: ApiType = .restApi,
+                                   function: String = #function,
                                    executeApi: @escaping (_ completion: @escaping ((_ data: T?, _ error: Error?) -> Void)) -> Void) -> Single<T> {
+        APIConfig.updateApiBasePath(apiType)
         return Single<T>.create { (observer) -> Disposable in
             executeApi { response, error in
                 if let apiError = convertToApiError(response, error) {

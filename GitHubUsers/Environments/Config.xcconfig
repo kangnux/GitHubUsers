@@ -8,5 +8,10 @@
 // Configuration settings file format documentation can be found at:
 // https://help.apple.com/xcode/#/dev745c5c974
 
-ServerURL = https:/$()/api.github.com
+RestApiURL = https:/$()/api.github.com
+AuthBaseURL = https:/$()/github.com/login/oauth
+RedirectURL = https:/$()/github.com/kangnux/GitHubUsers
+ClientID = b9711c187ca4ba6b3ec0
+ClientServer = 434396782c674103d753e4a46f276c5847dee65c
+
 GitHubApiToken = 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

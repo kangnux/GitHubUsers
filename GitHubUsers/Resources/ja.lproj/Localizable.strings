@@ -14,6 +14,7 @@
 // Main
 "search" = "検索";
 "pin" = "ピン";
+"profile" = "プロファイル";
 "setting" = "設定";
 
 // UserList
@@ -30,6 +31,12 @@
 "showPublic" = "Public";
 "showPrivate" = "Private";
 "repositories" = "リポジトリ";
+
+// Profile
+"authorize" = "認証";
+"lastDate" = "最後更新: %@";
+"authSuccess" = "認証成功！";
+"authFail" = "認証失敗！";
 
 // Thank
 "dark" = "Dark";
@@ -55,7 +62,7 @@
 "ConnectError" = "Connect Error";
 "DataError" = "Data Error";
 "Close" = "閉じる";
-"RetryLater" = "\nPlease retry later.";
-"UpdateToken" = "\nPlease update the token.";
-"CheckInput" = "\nPlease check your input.";
+"RetryLater" = "\nPlease retry later .";
+"UpdateToken" = "Update the token local ! \n Or you can Authorize in Profile tab .";
+"CheckInput" = "\nPlease check your input .";
 "icon8" = "ICONS8";

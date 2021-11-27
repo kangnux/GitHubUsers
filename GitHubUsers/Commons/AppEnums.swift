@@ -13,6 +13,7 @@ enum UserDefaultsKeys: String {
     case pinRepositories = "pinRepositories"
     case searchCount = "searchCount"
     case searchHistory = "searchHistory"
+    case gitHubApiToken = "gitHubApiToken"
 }
 
 enum UserSortType: String {
@@ -55,9 +56,30 @@ enum PinViewTab {
     }
 }
 
+enum ApiType: Int {
+    case restApi = 0
+    case authApi
+    
+    var apiUrl: String {
+        switch self {
+        case .restApi:
+            return XcodeConfig.RestApiURL
+        case .authApi:
+            return XcodeConfig.AuthBaseURL
+        }
+    }
+}
+
+enum ApiKeys: String {
+    case token = "token "
+    case userAgent = "User-Agent"
+    case authorization = "Authorization"
+}
+
 enum MainViewTab {
     case user
     case pin
+    case profile
     case thank
 }
 
@@ -95,5 +117,31 @@ enum SearchCount: Int {
     
     var titleMessage: String {
         return localString.countTitle(self.rawValue.description)
+    }
+}
+
+enum TokenAuthorizeState: Int {
+    case invalid = 0
+    case valid
+    
+    var color: Color {
+        switch self {
+        case .invalid: return OpenColor.RED.color(7)
+        case .valid: return OpenColor.GREEN.color(7)
+        }
+    }
+}
+
+enum AuthState: Int {
+    case success
+    case fail
+    
+    var title: String {
+        switch self {
+        case .success:
+            return localString.authSuccess()
+        case .fail:
+            return localString.authFail()
+        }
     }
 }
