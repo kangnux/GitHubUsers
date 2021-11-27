@@ -26,7 +26,9 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 	* リポジトリー画面に表示メールが表示する場所に直接Mailアプリ起動し送信機能付き。
 	* リポジトリー画面にリポジトリーの開発言語の表示色をGitHubと統一する。
 * ピン画面：リポジトリ画面にPinしたユーザとリポジトリを永続化表示、ユーザが再度アプリ起動するときにも見える。
+* プロファイル画面：GitHubのアカウントがあれば、プロファイル画面に認証し、Tokenが自動的に更新できます。
 * 感謝画面：感謝情報を表示する
+
 #### API情報
 **GitHubのREST API**利用しGitHubから情報を吸い上げます。
 参照情報：[リファレンス - GitHub Docs](https://docs.github.com/ja/rest/reference)
@@ -48,7 +50,9 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 	* [mac-cain13/R.swift](https://github.com/mac-cain13/R.swift)
 * ResponseStatusCodeより通信エラー解析とエラー表示の汎用化。（CombineとSwiftUI）
 
+
 ## 認証情報：
+### 選択肢１
 認証情報：**個人アクセストークン**　生成方法：[個人アクセストークンを使用する - GitHub Docs](https://docs.github.com/ja/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 > GitHubに**レート制限**のAPIを利用するので、できるだけ個人アクセストークンを利用してください。
 > 
@@ -60,7 +64,12 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 **GitHubUsers/GitHubUsers/Environments/Config.xcconfig**
 [GitHubUsers/Config.xcconfig](https://github.com/kangnux/GitHubUsers/blob/3176dafd95c8edb155b720ac8c37b396e74e0e64/GitHubUsers/Environments/Config.xcconfig)
 
-## 画面スクリーンショット
+### 選択肢2
+* __Profile画面の認証機能利用すれば、自動的にTokenの更新が可能になります、個人情報は一切接触しない〜__
+
+## 画面スクリーンショット!
+[Uploading Authorize.png…]()
+
 
 |ユーザ画面|検索履歴長押しメニュー|
 |---|---|
@@ -74,10 +83,16 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 |---|---|
 |<img src=https://user-images.githubusercontent.com/14342048/142960601-5c13d5a3-3e0d-44bf-956c-d8dc8492dad2.PNG width=540px>| <img src=https://user-images.githubusercontent.com/14342048/142960628-956ac4c0-7dc5-424c-828b-2156086cd56b.PNG width=540px>|
 
+|プロファイル画面|認証画面|
+|---|---|
+|<img src=https://user-images.githubusercontent.com/14342048/143681693-fcd2c40e-7769-4944-a986-f63dd6ae20dc.png width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143681697-f744fb23-ab47-422e-b05e-2a986749a374.png width=540px>|
+
 ## その他
 これからもどんどん機能を作って導入する予定です。
 
 - 2021.11.23 検索履歴保存機能機能追加
+- 2021.11.27 Profile画面の認証よりToken更新機能導入[参照情報：Authorizing OAuth Apps](https://docs.github.com/en/developers/apps/building-oauth-apps/authorizing-oauth-apps)
+
 
 SwiftUI、Combine、Rxswiftなどの活用で技術力を上げましょう〜🧗
 
