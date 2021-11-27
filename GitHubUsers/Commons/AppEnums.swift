@@ -119,3 +119,29 @@ enum SearchCount: Int {
         return localString.countTitle(self.rawValue.description)
     }
 }
+
+enum TokenAuthorizeState: Int {
+    case invalid = 0
+    case valid
+    
+    var color: Color {
+        switch self {
+        case .invalid: return OpenColor.RED.color(7)
+        case .valid: return OpenColor.GREEN.color(7)
+        }
+    }
+}
+
+enum AuthState: Int {
+    case success
+    case fail
+    
+    var title: String {
+        switch self {
+        case .success:
+            return localString.authSuccess()
+        case .fail:
+            return localString.authFail()
+        }
+    }
+}

@@ -35,7 +35,7 @@ class UserDefaultsManager: NSObject {
         }
     }
     
-    static var gitHubApiToken: String? {
+    static var gitHubApiToken: TokenEntity? {
         get { UserDefaults.getGitHubApiToken() }
         set {
             if let value = newValue {
@@ -93,14 +93,21 @@ extension UserDefaults {
         userDefaults?.synchronize()
     }
     
-    fileprivate static func getGitHubApiToken() -> String? {
+    fileprivate static func getGitHubApiToken() -> TokenEntity? {
         let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
-        return userDefaults?.string(forKey: UserDefaultsKeys.gitHubApiToken.rawValue)
+        if let data = userDefaults?.data(forKey: UserDefaultsKeys.gitHubApiToken.rawValue) {
+            let decoder = JSONDecoder()
+            let value = try? decoder.decode(TokenEntity.self, from: data)
+            return value
+        }
+        return nil
     }
     
-    fileprivate static func setGitHubApiToken(_ token: String) {
+    fileprivate static func setGitHubApiToken(_ token: TokenEntity) {
         let userDefaults = UserDefaults.init(suiteName: Constants.userDefaultsSuitName)
-        userDefaults?.set(token, forKey: UserDefaultsKeys.gitHubApiToken.rawValue)
+        let encoder = JSONEncoder()
+        let encodedData = try? encoder.encode(token)
+        userDefaults?.set(encodedData, forKey: UserDefaultsKeys.gitHubApiToken.rawValue)
         userDefaults?.synchronize()
     }
     

@@ -22,6 +22,7 @@ class UserListViewModel: ObservableObject {
     @Published var showIndicator = false
     @Published var searchCount: SearchCount = .ten
     @Published var isShowEmpty: Bool = false
+    @Published var authorizeState: TokenAuthorizeState = .invalid
     
     init(container: DIContainer) {
         self.container = container
@@ -34,6 +35,14 @@ class UserListViewModel: ObservableObject {
                 .sink { [weak self] _ in
                     self?.fetchUserList()
                 }
+            
+            appState.map(\.userData.authorizeState)
+                .removeDuplicates()
+                .weakAssign(to: \.authorizeState, on: self)
+            
+            $authorizeState
+                .removeDuplicates()
+                .sink { appState[\.userData.authorizeState] = $0 }
         }
     }
     
@@ -47,12 +56,17 @@ class UserListViewModel: ObservableObject {
             .subscribe(onSuccess: { [weak self] response in
                 let loginList = response.list.map { $0.login } .filter { !$0.isEmpty }
                 self?.fetchUserDetailInfo( loginList )
+                self?.authorizeState = .valid
                 DispatchQueue.main.async {
                     self?.userListInfo = response
                     self?.showIndicator = false
                     self?.isShowEmpty = loginList.isEmpty
                 }
             }, onFailure: {  [weak self] error in
+                if let apiError = error as? ApiError,
+                   [.NotModified, .Unauthorized, .Forbidden].contains(apiError.status) {
+                    self?.authorizeState = .invalid
+                }
                 self?.showIndicator = false
                 self?.apiAlertBag.addAlertItem(error: error)
                 self?.isShowEmpty = false

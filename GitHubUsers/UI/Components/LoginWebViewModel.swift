@@ -10,13 +10,26 @@ import RxSwift
 
 class LoginWebViewModel: ObservableObject {
     let container: DIContainer
-    
-    @Published var didFinishLoading: Bool = false
+    private let cancelBag = CancelBag()
     private var disposable: Disposable?
     private let disposeBag = DisposeBag()
     
+    @Published var didFinishLoading: Bool = false
+    @Published var authorizeState: TokenAuthorizeState = .invalid
+    
     init (container: DIContainer) {
         self.container = container
+        let appState = container.appState
+        
+        cancelBag.collect {
+            appState.map(\.userData.authorizeState)
+                .removeDuplicates()
+                .weakAssign(to: \.authorizeState, on: self)
+            
+            $authorizeState
+                .removeDuplicates()
+                .sink { appState[\.userData.authorizeState] = $0 }
+        }
     }
     
     func fetchAuthUrl() -> String {
@@ -38,9 +51,10 @@ class LoginWebViewModel: ObservableObject {
             .subscribe(onSuccess: { response in
                 if let token = response.accessToken, !token.isEmpty {
                     APIConfig.updateToken(token)
+                    self.authorizeState = .valid
                 }
-            }, onFailure: {  [weak self] error in
-                print(error)
+            }, onFailure: { error in
+                self.authorizeState = .invalid
             })
         disposable?.disposed(by: disposeBag)
     }

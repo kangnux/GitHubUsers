@@ -34,6 +34,9 @@
 
 // Profile
 "authorize" = "Authorize";
+"lastDate" = "Last Update: %@";
+"authSuccess" = "Authorize Success !";
+"authFail" = "Authorize Fail !";
 
 // Thank
 "dark" = "Dark";

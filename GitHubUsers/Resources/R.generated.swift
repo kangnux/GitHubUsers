@@ -129,7 +129,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 44 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 47 localization keys.
     struct localizable {
       /// en translation: 
       ///
@@ -167,6 +167,14 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let authorize = Rswift.StringResource(key: "authorize", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize Fail !
+      ///
+      /// Locales: en, ja
+      static let authFail = Rswift.StringResource(key: "authFail", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Authorize Success !
+      ///
+      /// Locales: en, ja
+      static let authSuccess = Rswift.StringResource(key: "authSuccess", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Auto
       ///
       /// Locales: en, ja
@@ -215,6 +223,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let icon8 = Rswift.StringResource(key: "icon8", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Last Update: %@
+      ///
+      /// Locales: en, ja
+      static let lastDate = Rswift.StringResource(key: "lastDate", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Light
       ///
       /// Locales: en, ja
@@ -445,6 +457,36 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("authorize", bundle: bundle, comment: "")
       }
 
+      /// en translation: Authorize Fail !
+      ///
+      /// Locales: en, ja
+      static func authFail(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authFail", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authFail"
+        }
+
+        return NSLocalizedString("authFail", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Authorize Success !
+      ///
+      /// Locales: en, ja
+      static func authSuccess(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("authSuccess", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "authSuccess"
+        }
+
+        return NSLocalizedString("authSuccess", bundle: bundle, comment: "")
+      }
+
       /// en translation: Auto
       ///
       /// Locales: en, ja
@@ -625,6 +667,23 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("icon8", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Last Update: %@
+      ///
+      /// Locales: en, ja
+      static func lastDate(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("lastDate", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "lastDate"
+        }
+
+        let format = NSLocalizedString("lastDate", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: Light

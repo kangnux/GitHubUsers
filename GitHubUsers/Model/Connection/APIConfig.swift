@@ -42,8 +42,8 @@ class APIConfig {
 
 private extension APIConfig {
     static func loadToken() {
-        if let token = AppSettingManager.shared.fetchGitHubApiToken(), !token.isEmpty {
-            self.token = token
+        if let tokenItem = AppSettingManager.shared.fetchGitHubApiToken(), !tokenItem.token.isEmpty {
+            self.token = tokenItem.token
         }
     }
     
@@ -61,10 +61,6 @@ private extension APIConfig {
     }
     
     static func fetchToken() -> String {
-        if let token = AppSettingManager.shared.fetchGitHubApiToken(), token.isEmpty {
-            return ApiKeys.token.rawValue + token
-        }
-        
         return ApiKeys.token.rawValue + token
     }
 }

@@ -34,6 +34,9 @@
 
 // Profile
 "authorize" = "認証";
+"lastDate" = "最後更新: %@";
+"authSuccess" = "認証成功！";
+"authFail" = "認証失敗！";
 
 // Thank
 "dark" = "Dark";
