@@ -685,7 +685,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/opt/homebrew/bin/rswift generate \"$SRCROOT/GitHubUsers/Resources/R.generated.swift\"\n";
+			shellScript = "#/opt/homebrew/bin/rswift generate \"$SRCROOT/GitHubUsers/Resources/R.generated.swift\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
