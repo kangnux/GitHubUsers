@@ -115,8 +115,7 @@ private extension OmitUserView {
                 .scaledToFit()
                 .frame(width: 12)
                 .foregroundColor(OpenColor.GRAY.color(6))
-            localString.empty.text
-                .font(.caption2).fontWeight(.light)
+            Spacer()
         }
     }
     

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var trigger: TriggerObject
     @Environment(\.scenePhase) private var scenePhase
     @ObservedObject private(set) var viewModel: MainViewModel
     
@@ -46,6 +47,9 @@ struct MainView: View {
                 
             }
             .accentColor(OpenColor.BLUE.color(8))
+        }
+        .onChange(of: viewModel.tab) { _ in
+            viewModel.refresh(type: .appear)
         }
     }
 }

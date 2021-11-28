@@ -15,6 +15,7 @@ class PinViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     @Published var apiAlertBag = ApiAlertBag()
+    @Published var refresh: Trigger<RefreshType> = .init(type: .appear, trigger: false)
     @Published var tab: PinViewTab
     @Published var tapLogin: UserEntity.Login?
     @Published var userListInfo: UserListResponse = UserListResponse()
@@ -44,6 +45,16 @@ class PinViewModel: ObservableObject {
                 .sink { [weak self] _ in
                     self?.fetPinRepositories()
                 }
+        }
+    }
+    
+    func refresh(type: RefreshType) {
+        if [.appear, .active, .manual, .pull].contains(type) {
+            if tab == .user {
+                fetPinUserList()
+            } else {
+                fetPinRepositories()
+            }
         }
     }
     

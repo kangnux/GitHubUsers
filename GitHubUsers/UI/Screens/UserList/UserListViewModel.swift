@@ -15,6 +15,7 @@ class UserListViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     @Published var apiAlertBag = ApiAlertBag()
+    @Published var refresh: Trigger<RefreshType> = .init(type: .appear, trigger: false)
     @Published var routingState: Routing
     @Published var searchKey: String = localString.empty()
     @Published var tags: [TagEntity] = []
@@ -32,8 +33,8 @@ class UserListViewModel: ObservableObject {
         cancelBag.collect {
             $searchKey
                 .debounce(for: 0.25, scheduler: DispatchQueue.main)
-                .sink { [weak self] _ in
-                    self?.fetchUserList()
+                .sink {_ in
+                    self.refresh = self.refresh.toggle(type: .manual)
                 }
             
             appState.map(\.userData.authorizeState)
@@ -43,6 +44,12 @@ class UserListViewModel: ObservableObject {
             $authorizeState
                 .removeDuplicates()
                 .sink { appState[\.userData.authorizeState] = $0 }
+        }
+    }
+    
+    func refresh(type: RefreshType) {
+        if [.appear, .active, .manual, .pull].contains(type) {
+            fetchUserList(type.isShowIndicator)
         }
     }
     
@@ -100,14 +107,14 @@ class UserListViewModel: ObservableObject {
             if tags.count > 0 {
                 self.searchKey = tags.first?.text ?? localString.empty()
             } else {
-                self.fetchUserList()
+                self.refresh = self.refresh.toggle(type: .appear)
             }
         }
     }
     
     func updateSearchCount() {
         AppSettingManager.shared.updateSearchCount(searchCount.rawValue)
-        fetchUserList()
+        refresh = refresh.toggle(type: .manual)
     }
 }
 

@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct PinView: View {
+    @EnvironmentObject var trigger: TriggerObject
+    @Environment(\.colorScheme) var colorScheme
     @ObservedObject private(set) var viewModel: PinViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
-    @Environment(\.colorScheme) var colorScheme
     @State private var selectedIndex = 0
     
     var body: some View {
@@ -34,9 +35,14 @@ struct PinView: View {
         .alert(isPresented: $apiAlertBag.isPresented) {
             apiAlertBag.alert.alert
         }
-        .onAppear {
-            viewModel.fetPinUserList()
-            viewModel.fetPinRepositories()
+        .onFirstAppear {
+            viewModel.refresh = viewModel.refresh.toggle(type: .appear)
+        }
+        .onChange(of: trigger.refreshTrigger) { value in
+            viewModel.refresh = value
+        }
+        .onChange(of: viewModel.refresh) { value in
+            viewModel.refresh(type: value.type)
         }
     }
 }

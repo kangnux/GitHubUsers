@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserListView: View {
+    @EnvironmentObject var trigger: TriggerObject
     @ObservedObject private(set) var viewModel: UserListViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
     @State private var isEditing = false
@@ -28,6 +29,12 @@ struct UserListView: View {
         }
         .onChange(of: viewModel.searchCount) { _ in
             viewModel.updateSearchCount()
+        }
+        .onChange(of: trigger.refreshTrigger) { value in
+            viewModel.refresh = value
+        }
+        .onChange(of: viewModel.refresh) { value in
+            viewModel.refresh(type: value.type)
         }
     }
 }
@@ -69,7 +76,7 @@ private extension UserListView {
         }
         .listStyle(InsetGroupedListStyle())
         .refreshable {
-            viewModel.fetchUserList(false)
+            viewModel.refresh = viewModel.refresh.toggle(type: .pull)
         }
     }
     

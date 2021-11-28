@@ -145,3 +145,19 @@ enum AuthState: Int {
         }
     }
 }
+
+enum RefreshType: Int {
+    case appear
+    case active
+    case manual
+    case pull
+    
+    var isShowIndicator: Bool {
+        switch self {
+        case .pull:
+            return false
+        default:
+            return true
+        }
+    }
+}

@@ -46,9 +46,9 @@ private extension UserDetailView {
                 if !viewModel.userInfo.location.isEmpty {
                     locationContent
                 }
+                followContent
             }
-            
-            followContent
+            .padding(.vertical, 8)
             
             Divider()
         }

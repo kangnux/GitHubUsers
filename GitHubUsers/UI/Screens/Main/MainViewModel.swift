@@ -36,6 +36,19 @@ class MainViewModel: ObservableObject {
                 .weakAssign(to: \.tab, on: self)
         }
     }
+    
+    func refresh(type: RefreshType) {
+        switch tab {
+        case .user:
+            userListViewModel.refresh = userListViewModel.refresh.toggle(type: .appear)
+        case .pin:
+            pinViewModel.refresh = pinViewModel.refresh.toggle(type: .appear)
+        case .profile:
+            break
+        case .thank:
+            break
+        }
+    }
 }
 
 extension MainViewModel {

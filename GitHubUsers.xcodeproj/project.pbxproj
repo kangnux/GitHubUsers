@@ -108,6 +108,7 @@
 		00E337FC2752107600681370 /* AuthRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337FB2752107600681370 /* AuthRepository.swift */; };
 		00E337FE2752374100681370 /* TokenEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337FD2752374100681370 /* TokenEntity.swift */; };
 		00E338002752489800681370 /* AuthInfoEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E337FF2752489800681370 /* AuthInfoEntity.swift */; };
+		00E3380527533A5300681370 /* TriggerObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00E3380427533A5300681370 /* TriggerObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -212,6 +213,7 @@
 		00E337FB2752107600681370 /* AuthRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthRepository.swift; sourceTree = "<group>"; };
 		00E337FD2752374100681370 /* TokenEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenEntity.swift; sourceTree = "<group>"; };
 		00E337FF2752489800681370 /* AuthInfoEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthInfoEntity.swift; sourceTree = "<group>"; };
+		00E3380427533A5300681370 /* TriggerObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -274,8 +276,6 @@
 				004E7D3127484EFF008FD000 /* WebView.swift */,
 				004E7D52274931F0008FD000 /* ApiAlertBag.swift */,
 				004E7D5427493278008FD000 /* AlertItem.swift */,
-				00E337EF274C9A4700681370 /* LoginWebView.swift */,
-				00E337F1274CA86700681370 /* LoginWebViewModel.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -478,6 +478,7 @@
 			children = (
 				00897AE52743598E001A6A18 /* AppEnums.swift */,
 				00897AFF27438681001A6A18 /* AppConstants.swift */,
+				00E3380427533A5300681370 /* TriggerObject.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -569,10 +570,20 @@
 		00E337EA274C92C500681370 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				00E3380327533A3800681370 /* Components */,
 				00E337EB274C92D400681370 /* ProfileView.swift */,
 				00E337ED274C92E700681370 /* ProfileViewModel.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		00E3380327533A3800681370 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				00E337EF274C9A4700681370 /* LoginWebView.swift */,
+				00E337F1274CA86700681370 /* LoginWebViewModel.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -750,6 +761,7 @@
 				004E7D2A2747EAD0008FD000 /* Rswift+Extension.swift in Sources */,
 				00897AD927433C6E001A6A18 /* UserListRepository.swift in Sources */,
 				00897AB727433370001A6A18 /* AlamofireImplementations.swift in Sources */,
+				00E3380527533A5300681370 /* TriggerObject.swift in Sources */,
 				004E7D4F27491C3D008FD000 /* ThankViewModel.swift in Sources */,
 				00309BFA2747DC6F00814913 /* RepositoryView.swift in Sources */,
 				00897A9927431D01001A6A18 /* GitHubUsersApp.swift in Sources */,
