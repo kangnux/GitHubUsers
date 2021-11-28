@@ -27,6 +27,7 @@ struct UserDetailView: View {
         .onFirstAppear {
             viewModel.fetchUserRepositories()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

@@ -31,6 +31,7 @@ struct ProfileView: View {
             }
             .navigationTitle(localString.profile())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $viewModel.authInfo.showAlert) {
             Alert(title: Text(viewModel.authInfo.state.title),
                   dismissButton: .default(localString.close.text,

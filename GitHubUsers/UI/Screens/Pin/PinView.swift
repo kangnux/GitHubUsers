@@ -29,6 +29,7 @@ struct PinView: View {
             .navigationTitle(localString.pin())
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.all)
         .alert(isPresented: $apiAlertBag.isPresented) {
             apiAlertBag.alert.alert
