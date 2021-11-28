@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PinView: View {
     @EnvironmentObject var trigger: TriggerObject
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) var currentMode
     @ObservedObject private(set) var viewModel: PinViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
     @State private var selectedIndex = 0
@@ -26,7 +26,8 @@ struct PinView: View {
                     }
                 }
             }
-            .background(OpenColor.GRAY.color(6))
+            .background(currentMode == .light ?
+                        GradientColor.lighBlue.gradient : GradientColor.darkBlue.gradient)
             .navigationTitle(localString.pin())
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -99,7 +100,7 @@ private extension PinView {
                 emptyContent
             }
         }
-        .background(colorScheme == .dark ? Color.black : Color.white)
+        .background(currentMode == .dark ? Color.black : Color.white)
     }
     
     func detailsView(userInfo: UserEntity) -> some View {
@@ -125,6 +126,7 @@ struct PinView_Previews: PreviewProvider {
     static let viewModel = PinViewModel(container: .preview)
     static var previews: some View {
         PinView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
+            .environmentObject(TriggerObject())
     }
 }
 #endif

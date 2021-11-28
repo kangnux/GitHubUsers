@@ -22,13 +22,33 @@ enum OpenColor: Int {
     case LIME
     case YELLOW
     case ORANGE
-
+    
     func color(_ number: Int) -> Color {
         if  Array( 0 ... 9 ) .contains(number) {
             return UIColor.hexStringToUIColor(hex: UIColor.ColorList[self.rawValue][number])
         }
-
+        
         return Color.clear
+    }
+}
+
+enum GradientColor: Int {
+    case lighBlue = 0
+    case darkBlue
+    
+    var gradient: LinearGradient {
+        switch self {
+        case .lighBlue:
+            return LinearGradient(
+                gradient: Gradient(colors: [OpenColor.BLUE.color(4), OpenColor.BLUE.color(2)]),
+                startPoint: .leading,
+                endPoint: .trailing)
+        case .darkBlue:
+            return LinearGradient(
+                gradient: Gradient(colors: [OpenColor.BLUE.color(8), OpenColor.BLUE.color(6)]),
+                startPoint: .leading,
+                endPoint: .trailing)
+        }
     }
 }
 
@@ -53,28 +73,28 @@ extension UIColor {
         [ "#f4fce3", "#e9fac8", "#d8f5a2", "#c0eb75", "#a9e34b", "#94d82d", "#82c91e", "#74b816", "#66a80f", "#5c940d"],
         [ "#fff9db", "#fff3bf", "#ffec99", "#ffe066", "#ffd43b", "#fcc419", "#fab005", "#f59f00", "#f08c00", "#e67700"],
         [ "#fff4e6", "#ffe8cc", "#ffd8a8", "#ffc078", "#ffa94d", "#ff922b", "#fd7e14", "#f76707", "#e8590c", "#d9480f"]]
-
+    
     static func hexStringToUIColor (hex:String) -> Color {
         var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
+        
         if (cString.hasPrefix("#")) {
             cString.remove(at: cString.startIndex)
         }
-
+        
         if ((cString.count) != 6) {
             return Color(UIColor.gray)
         }
-
+        
         var rgbValue:UInt64 = 0
         Scanner(string: cString).scanHexInt64(&rgbValue)
-
+        
         let uiColor =  UIColor(
             red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
             green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
-
+        
         return Color(uiColor)
     }
 }

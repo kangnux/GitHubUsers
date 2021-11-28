@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct UserListView: View {
+    @Environment(\.colorScheme) var currentMode
     @EnvironmentObject var trigger: TriggerObject
     @ObservedObject private(set) var viewModel: UserListViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
@@ -54,7 +55,8 @@ private extension UserListView {
                     }
                 }
             }
-            .background(OpenColor.GRAY.color(6))
+            .background(currentMode == .light ?
+                        GradientColor.lighBlue.gradient : GradientColor.darkBlue.gradient)
             .navigationBarHidden(isShowCancel)
             .navigationTitle(localString.user())
         }
@@ -117,6 +119,7 @@ struct UserListView_Previews: PreviewProvider {
     static let viewModel = UserListViewModel.init(container: .preview)
     static var previews: some View {
         UserListView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
+            .environmentObject(TriggerObject())
     }
 }
 #endif
