@@ -55,13 +55,12 @@ class UserDetailViewModel: ObservableObject {
     
     func fetchUserRepositories() {
         if showIndicator || userInfo.login.isEmpty { return }
-        repositories = []
         showIndicator = true
         
         disposable = container.services.repositoryService.fetchUserRepository(userInfo.login)
             .subscribe(onSuccess: { [weak self] response in
                 DispatchQueue.main.async {
-                    self?.repositories = response.list
+                    self?.repositories = response.list.filter { $0.fork == false }
                     self?.showIndicator = false
                 }
             }, onFailure: {  [weak self] error in

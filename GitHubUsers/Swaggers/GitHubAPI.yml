@@ -63,7 +63,6 @@ paths:
           description: "Unprocessable Entity"
         "503":
           description: "Service Unavailable"
-    
   /access_token:
     post:
       tags:
@@ -173,6 +172,28 @@ paths:
         required: true
         type: string
         description: "Provides publicly available information about someone with a GitHub account."
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/GitUserInfo"
+        "304":
+          description: "Not Modified"
+        "422":
+          description: "Unprocessable Entity"
+        "503":
+          description: "Service Unavailable"
+  /user:
+    get:
+      tags:
+      - "Users"
+      summary: "User Info"
+      description: ""
+      operationId: "requestUser"
+      consumes:
+      - "application/vnd.github.v3+json"
+      produces:
+      - "application/vnd.github.v3+json"
       responses:
         "200":
           description: "OK"
@@ -438,4 +459,3 @@ definitions:
       login:
         type: "string"
         example: "mojombo"
-  
