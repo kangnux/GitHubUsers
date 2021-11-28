@@ -15,6 +15,7 @@ class ProfileViewModel: ObservableObject {
     @Published var authorizeState: TokenAuthorizeState = .invalid
     @Published var authInfo = AuthInfoEntity()
     @Published var isShowLoginView: Bool = false
+    @Published var count: SearchCount = .ten
     
     init(container: DIContainer) {
         self.container = container
@@ -54,4 +55,14 @@ class ProfileViewModel: ObservableObject {
         }
     }
     
+    func fetchSettting() {
+        let count = AppSettingManager.shared.fetchSearchCount()
+        DispatchQueue.main.async {
+            self.count = SearchCount.build(count)
+        }
+    }
+    
+    func updateSearchCount() {
+        AppSettingManager.shared.updateSearchCount(count.rawValue)
+    }
 }

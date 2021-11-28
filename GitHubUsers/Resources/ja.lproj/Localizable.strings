@@ -23,7 +23,7 @@
 "follwers" = "Followers %@ • Following %@";
 "noResults" = "There is no results for \n%@";
 "noPinItem" = "Add some pin to show here...";
-"countTitle" = "検索件数 %@";
+"countTitle" = "検索件数: %@";
 "delete" = "Delete";
 
 // UserDetail

@@ -235,10 +235,6 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let notModified = Rswift.StringResource(key: "NotModified", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
-      /// en translation: Number of searches %@
-      ///
-      /// Locales: en, ja
-      static let countTitle = Rswift.StringResource(key: "countTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Open Color GitHub
       ///
       /// Locales: en, ja
@@ -271,6 +267,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let search = Rswift.StringResource(key: "search", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: Search Counts: %@
+      ///
+      /// Locales: en, ja
+      static let countTitle = Rswift.StringResource(key: "countTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: Service Unavailable
       ///
       /// Locales: en, ja
@@ -716,23 +716,6 @@ struct R: Rswift.Validatable {
         return NSLocalizedString("NotModified", bundle: bundle, comment: "")
       }
 
-      /// en translation: Number of searches %@
-      ///
-      /// Locales: en, ja
-      static func countTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
-        guard let preferredLanguages = preferredLanguages else {
-          let format = NSLocalizedString("countTitle", bundle: hostingBundle, comment: "")
-          return String(format: format, locale: applicationLocale, value1)
-        }
-
-        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
-          return "countTitle"
-        }
-
-        let format = NSLocalizedString("countTitle", bundle: bundle, comment: "")
-        return String(format: format, locale: locale, value1)
-      }
-
       /// en translation: Open Color GitHub
       ///
       /// Locales: en, ja
@@ -851,6 +834,23 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("search", bundle: bundle, comment: "")
+      }
+
+      /// en translation: Search Counts: %@
+      ///
+      /// Locales: en, ja
+      static func countTitle(_ value1: String, preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          let format = NSLocalizedString("countTitle", bundle: hostingBundle, comment: "")
+          return String(format: format, locale: applicationLocale, value1)
+        }
+
+        guard let (locale, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "countTitle"
+        }
+
+        let format = NSLocalizedString("countTitle", bundle: bundle, comment: "")
+        return String(format: format, locale: locale, value1)
       }
 
       /// en translation: Service Unavailable

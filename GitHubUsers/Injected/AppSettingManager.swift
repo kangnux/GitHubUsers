@@ -9,6 +9,7 @@ import Foundation
 
 class AppSettingManager: NSObject {
     static let shared = AppSettingManager()
+    static var searchCount = SearchCount.build(UserDefaultsManager.searchCount ?? SearchCount.ten.rawValue)
     
     func fetchPinUserList() -> [PinUserEntity] {
         if let list = UserDefaultsManager.pinUserList {
@@ -87,6 +88,7 @@ class AppSettingManager: NSObject {
     
     func updateSearchCount(_ count: Int) {
         UserDefaultsManager.searchCount = count
+        AppSettingManager.searchCount = SearchCount.build(UserDefaultsManager.searchCount ?? SearchCount.ten.rawValue)
     }
     
     func fetchSearchHistory() -> [TagEntity] {

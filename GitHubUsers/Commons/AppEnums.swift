@@ -118,6 +118,10 @@ enum SearchCount: Int {
     var titleMessage: String {
         return localString.countTitle(self.rawValue.description)
     }
+    
+    var title: String {
+        return self.rawValue.description
+    }
 }
 
 enum TokenAuthorizeState: Int {

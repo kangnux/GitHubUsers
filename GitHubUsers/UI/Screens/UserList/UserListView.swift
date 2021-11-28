@@ -27,9 +27,6 @@ struct UserListView: View {
         .onFirstAppear {
             viewModel.fetchSettting()
         }
-        .onChange(of: viewModel.searchCount) { _ in
-            viewModel.updateSearchCount()
-        }
         .onChange(of: trigger.refreshTrigger) { value in
             viewModel.refresh = value
         }
@@ -55,7 +52,6 @@ private extension UserListView {
                     if viewModel.isShowEmpty {
                         emptyContent
                     }
-                    settingContent
                 }
             }
             .background(OpenColor.GRAY.color(6))
@@ -113,43 +109,6 @@ private extension UserListView {
             }
         }
         .edgesIgnoringSafeArea(.all)
-    }
-    
-    var settingContent: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                menuContent
-                Spacer().frame(width: 16, height: 16)
-            }
-            Spacer()
-        }
-    }
-    
-    var menuContent: some View {
-        Menu(content: {
-            Picker(selection: $viewModel.searchCount, content: {
-                Text(SearchCount.ten.titleMessage).monospacedDigit()
-                    .tag(SearchCount.ten)
-                Text(SearchCount.twenty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.twenty)
-                Text(SearchCount.thirty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.thirty)
-                Text(SearchCount.fifty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.fifty)
-            }, label: {
-                Text(localString.empty())
-            })
-                .padding()
-        }) {
-            Image(systemName: viewModel.searchCount.titleImage)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 36)
-                .foregroundColor(OpenColor.INDIGO.color(9))
-                .shadow(radius: 3)
-        }
     }
 }
 
