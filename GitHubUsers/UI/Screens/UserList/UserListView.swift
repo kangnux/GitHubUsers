@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct UserListView: View {
+    @Environment(\.colorScheme) var currentMode
+    @EnvironmentObject var trigger: TriggerObject
     @ObservedObject private(set) var viewModel: UserListViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
     @State private var isEditing = false
@@ -26,8 +28,11 @@ struct UserListView: View {
         .onFirstAppear {
             viewModel.fetchSettting()
         }
-        .onChange(of: viewModel.searchCount) { _ in
-            viewModel.updateSearchCount()
+        .onChange(of: trigger.refreshTrigger) { value in
+            viewModel.refresh = value
+        }
+        .onChange(of: viewModel.refresh) { value in
+            viewModel.refresh(type: value.type)
         }
     }
 }
@@ -48,10 +53,10 @@ private extension UserListView {
                     if viewModel.isShowEmpty {
                         emptyContent
                     }
-                    settingContent
                 }
             }
-            .background(OpenColor.GRAY.color(6))
+            .background(currentMode == .light ?
+                        GradientColor.lighBlue.gradient : GradientColor.darkBlue.gradient)
             .navigationBarHidden(isShowCancel)
             .navigationTitle(localString.user())
         }
@@ -69,7 +74,7 @@ private extension UserListView {
         }
         .listStyle(InsetGroupedListStyle())
         .refreshable {
-            viewModel.fetchUserList(false)
+            viewModel.refresh = viewModel.refresh.toggle(type: .pull)
         }
     }
     
@@ -107,43 +112,6 @@ private extension UserListView {
         }
         .edgesIgnoringSafeArea(.all)
     }
-    
-    var settingContent: some View {
-        VStack {
-            Spacer()
-            HStack {
-                Spacer()
-                menuContent
-                Spacer().frame(width: 16, height: 16)
-            }
-            Spacer()
-        }
-    }
-    
-    var menuContent: some View {
-        Menu(content: {
-            Picker(selection: $viewModel.searchCount, content: {
-                Text(SearchCount.ten.titleMessage).monospacedDigit()
-                    .tag(SearchCount.ten)
-                Text(SearchCount.twenty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.twenty)
-                Text(SearchCount.thirty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.thirty)
-                Text(SearchCount.fifty.titleMessage).monospacedDigit()
-                    .tag(SearchCount.fifty)
-            }, label: {
-                Text(localString.empty())
-            })
-                .padding()
-        }) {
-            Image(systemName: viewModel.searchCount.titleImage)
-                .resizable()
-                .scaledToFit()
-                .frame(width: 36)
-                .foregroundColor(OpenColor.INDIGO.color(9))
-                .shadow(radius: 3)
-        }
-    }
 }
 
 #if DEBUG
@@ -151,6 +119,7 @@ struct UserListView_Previews: PreviewProvider {
     static let viewModel = UserListViewModel.init(container: .preview)
     static var previews: some View {
         UserListView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
+            .environmentObject(TriggerObject())
     }
 }
 #endif

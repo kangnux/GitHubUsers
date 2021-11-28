@@ -118,6 +118,10 @@ enum SearchCount: Int {
     var titleMessage: String {
         return localString.countTitle(self.rawValue.description)
     }
+    
+    var title: String {
+        return self.rawValue.description
+    }
 }
 
 enum TokenAuthorizeState: Int {
@@ -142,6 +146,22 @@ enum AuthState: Int {
             return localString.authSuccess()
         case .fail:
             return localString.authFail()
+        }
+    }
+}
+
+enum RefreshType: Int {
+    case appear
+    case active
+    case manual
+    case pull
+    
+    var isShowIndicator: Bool {
+        switch self {
+        case .pull:
+            return false
+        default:
+            return true
         }
     }
 }

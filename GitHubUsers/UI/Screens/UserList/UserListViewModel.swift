@@ -15,12 +15,12 @@ class UserListViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     @Published var apiAlertBag = ApiAlertBag()
+    @Published var refresh: Trigger<RefreshType> = .init(type: .appear, trigger: false)
     @Published var routingState: Routing
     @Published var searchKey: String = localString.empty()
     @Published var tags: [TagEntity] = []
     @Published var userListInfo: UserListResponse = UserListResponse()
     @Published var showIndicator = false
-    @Published var searchCount: SearchCount = .ten
     @Published var isShowEmpty: Bool = false
     @Published var authorizeState: TokenAuthorizeState = .invalid
     
@@ -32,8 +32,8 @@ class UserListViewModel: ObservableObject {
         cancelBag.collect {
             $searchKey
                 .debounce(for: 0.25, scheduler: DispatchQueue.main)
-                .sink { [weak self] _ in
-                    self?.fetchUserList()
+                .sink {_ in
+                    self.refresh = self.refresh.toggle(type: .manual)
                 }
             
             appState.map(\.userData.authorizeState)
@@ -46,12 +46,18 @@ class UserListViewModel: ObservableObject {
         }
     }
     
+    func refresh(type: RefreshType) {
+        if [.appear, .active, .manual, .pull].contains(type) {
+            fetchUserList(type.isShowIndicator)
+        }
+    }
+    
     func fetchUserList(_ isShowIndicator: Bool = true) {
         userListInfo = UserListResponse()
         isShowEmpty = false
         showIndicator = isShowIndicator
         
-        let request = UserListRequest(q: searchKey + Constants.searchKeySuffix, perPage: searchCount.rawValue)
+        let request = UserListRequest(q: searchKey + Constants.searchKeySuffix, perPage: AppSettingManager.searchCount.rawValue)
         disposable = container.services.userListService.fetchUserList(request)
             .subscribe(onSuccess: { [weak self] response in
                 let loginList = response.list.map { $0.login } .filter { !$0.isEmpty }
@@ -92,22 +98,15 @@ class UserListViewModel: ObservableObject {
     }
     
     func fetchSettting() {
-        let count = AppSettingManager.shared.fetchSearchCount()
         let tags = AppSettingManager.shared.fetchSearchHistory()
         DispatchQueue.main.async {
-            self.searchCount = SearchCount.build(count)
             self.tags = tags
             if tags.count > 0 {
                 self.searchKey = tags.first?.text ?? localString.empty()
             } else {
-                self.fetchUserList()
+                self.refresh = self.refresh.toggle(type: .appear)
             }
         }
-    }
-    
-    func updateSearchCount() {
-        AppSettingManager.shared.updateSearchCount(searchCount.rawValue)
-        fetchUserList()
     }
 }
 

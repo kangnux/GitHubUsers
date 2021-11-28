@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct PinView: View {
+    @EnvironmentObject var trigger: TriggerObject
+    @Environment(\.colorScheme) var currentMode
     @ObservedObject private(set) var viewModel: PinViewModel
     @ObservedObject private(set) var apiAlertBag: ApiAlertBag
-    @Environment(\.colorScheme) var colorScheme
     @State private var selectedIndex = 0
     
     var body: some View {
@@ -25,17 +26,24 @@ struct PinView: View {
                     }
                 }
             }
-            .background(OpenColor.GRAY.color(6))
+            .background(currentMode == .light ?
+                        GradientColor.lighBlue.gradient : GradientColor.darkBlue.gradient)
             .navigationTitle(localString.pin())
             .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.all)
         .alert(isPresented: $apiAlertBag.isPresented) {
             apiAlertBag.alert.alert
         }
-        .onAppear {
-            viewModel.fetPinUserList()
-            viewModel.fetPinRepositories()
+        .onFirstAppear {
+            viewModel.refresh = viewModel.refresh.toggle(type: .appear)
+        }
+        .onChange(of: trigger.refreshTrigger) { value in
+            viewModel.refresh = value
+        }
+        .onChange(of: viewModel.refresh) { value in
+            viewModel.refresh(type: value.type)
         }
     }
 }
@@ -92,7 +100,7 @@ private extension PinView {
                 emptyContent
             }
         }
-        .background(colorScheme == .dark ? Color.black : Color.white)
+        .background(currentMode == .dark ? Color.black : Color.white)
     }
     
     func detailsView(userInfo: UserEntity) -> some View {
@@ -118,6 +126,7 @@ struct PinView_Previews: PreviewProvider {
     static let viewModel = PinViewModel(container: .preview)
     static var previews: some View {
         PinView(viewModel: viewModel, apiAlertBag: viewModel.apiAlertBag)
+            .environmentObject(TriggerObject())
     }
 }
 #endif

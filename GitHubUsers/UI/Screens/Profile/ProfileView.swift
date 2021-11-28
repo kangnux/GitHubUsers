@@ -26,19 +26,30 @@ struct ProfileView: View {
                     Text(localString.lastDate(viewModel.lastDate))
                         .font(.system(.footnote, design: .rounded))
                         .foregroundColor(Color.gray)
+                    
+                    Divider()
+                    
+                    configSearchCountContent
+                    
+                    Divider()
                 }
                 .padding(.horizontal, 8)
             }
             .navigationTitle(localString.profile())
         }
+        .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $viewModel.authInfo.showAlert) {
             Alert(title: Text(viewModel.authInfo.state.title),
                   dismissButton: .default(localString.close.text,
                                           action: {}))
         }
         .edgesIgnoringSafeArea(.all)
+        .onChange(of: viewModel.count) { _ in
+            viewModel.updateSearchCount()
+        }
         .onAppear {
             viewModel.fetchAccessToken()
+            viewModel.fetchSettting()
         }
     }
 }
@@ -60,6 +71,28 @@ private extension ProfileView {
                             .shadow(radius: 2)
                     )
             }
+    }
+    
+    var configSearchCountContent: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text(viewModel.count.titleMessage)
+                .font(.system(.headline, design: .rounded))
+                .foregroundColor(OpenColor.GRAY.color(6))
+            Picker(selection: $viewModel.count, content: {
+                Text(SearchCount.ten.title).monospacedDigit()
+                    .tag(SearchCount.ten)
+                Text(SearchCount.twenty.title).monospacedDigit()
+                    .tag(SearchCount.twenty)
+                Text(SearchCount.thirty.title).monospacedDigit()
+                    .tag(SearchCount.thirty)
+                Text(SearchCount.fifty.title).monospacedDigit()
+                    .tag(SearchCount.fifty)
+            }, label: {
+                Text(localString.empty())
+            })
+                .padding(.vertical)
+                .pickerStyle(SegmentedPickerStyle())
+        }
     }
 }
 

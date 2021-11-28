@@ -21,12 +21,13 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 	* 検索したユーザ一覧をタップし選択したユーザのレポジトリ画面を表示する。 	
 	* レポジトリ画面(ユーザ詳細)：ユーザ詳細情報とリポジトリを表示する。
 	* ユーザとリポジトリにPin（お気に入り）機能あり。
-	* ネットワーク負担を減らすために、毎回検索件数に変更機能付き。
 	* ユーザ簡略情報の表示(Location、Mail、プロフィール、Follow情報など)。
 	* リポジトリー画面に表示メールが表示する場所に直接Mailアプリ起動し送信機能付き。
 	* リポジトリー画面にリポジトリーの開発言語の表示色をGitHubと統一する。
 * ピン画面：リポジトリ画面にPinしたユーザとリポジトリを永続化表示、ユーザが再度アプリ起動するときにも見える。
-* プロファイル画面：GitHubのアカウントがあれば、プロファイル画面に認証し、Tokenが自動的に更新できます。
+* プロファイル画面：
+	* GitHubのアカウントがあれば、プロファイル画面に認証し、Tokenが自動的に更新できます。
+	* ネットワーク負担を減らすために、毎回検索件数に変更機能付き。
 * 感謝画面：感謝情報を表示する
 
 #### API情報
@@ -71,21 +72,17 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 [Uploading Authorize.png…]()
 
 
-|ユーザ画面|検索履歴長押しメニュー|
+|ユーザ画面|リポジトリー画面|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142960483-e357c14a-2f44-437f-bfa7-b66876fd82f0.PNG width=540px>|<img src=https://user-images.githubusercontent.com/14342048/142960528-40616ba3-b15b-4359-af53-8a05329a78e4.PNG width=540px>|
-
-|リポジトリー画面|
-|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142960573-b821b68a-8953-4c96-9aae-d260d8fbde7b.PNG width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/143734806-54b9e7e1-b226-48e4-8b12-1a0383a8fb66.png width=540px>|<img src=https://user-images.githubusercontent.com/14342048/143734819-84119c12-7e95-421a-bc7d-99fa1e4a6713.png width=540px>|
 
 |Pinユーザ画面|Pinリポジトリー画面|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/142960601-5c13d5a3-3e0d-44bf-956c-d8dc8492dad2.PNG width=540px>| <img src=https://user-images.githubusercontent.com/14342048/142960628-956ac4c0-7dc5-424c-828b-2156086cd56b.PNG width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/143734832-9c0cfcac-f237-431f-b82c-ef30a3d01c41.png width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143734835-03d8893d-a106-4d33-b403-91d7706cb481.png width=540px>|
 
 |プロファイル画面|認証画面|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/143681693-fcd2c40e-7769-4944-a986-f63dd6ae20dc.png width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143681697-f744fb23-ab47-422e-b05e-2a986749a374.png width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/143734844-d5c4e495-cd65-4982-b05c-90d9c9d50e87.png width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143681697-f744fb23-ab47-422e-b05e-2a986749a374.png width=540px>|
 
 ## その他
 これからもどんどん機能を作って導入する予定です。
