@@ -82,7 +82,7 @@ A sample app for SwiftUI MVVM Combine Rxswift GitHub REST API  etc.
 
 |プロファイル画面|認証画面|
 |---|---|
-|<img src=https://user-images.githubusercontent.com/14342048/143734844-d5c4e495-cd65-4982-b05c-90d9c9d50e87.png width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143681697-f744fb23-ab47-422e-b05e-2a986749a374.png width=540px>|
+|<img src=https://user-images.githubusercontent.com/14342048/143770979-94c782ff-04b7-45f2-9e08-2c4d8cb1961a.PNG width=540px>| <img src=https://user-images.githubusercontent.com/14342048/143681697-f744fb23-ab47-422e-b05e-2a986749a374.png width=540px>|
 
 ## その他
 これからもどんどん機能を作って導入する予定です。
