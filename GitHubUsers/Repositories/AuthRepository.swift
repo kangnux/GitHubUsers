@@ -11,6 +11,7 @@ import RxSwift
 protocol AuthRepository: BaseRepository {
     func fetchAuthUrl(_ state: String) -> String
     func fetchAccessToken(_ code: String) -> Single<GitTokenItem>
+    func fetchUserInfo() -> Single<GitUserInfo>
 }
 
 struct RealAuthRepository: AuthRepository {
@@ -29,6 +30,12 @@ struct RealAuthRepository: AuthRepository {
                                        code: code,
                                        redirectUri: XcodeConfig.RedirectURL,
                                        completion: completion)
+        }
+    }
+    
+    func fetchUserInfo() -> Single<GitUserInfo> {
+        return convertSingle { completion in
+            UsersAPI.requestUser(completion: completion)
         }
     }
 }

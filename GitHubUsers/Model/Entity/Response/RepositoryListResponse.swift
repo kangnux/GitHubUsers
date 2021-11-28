@@ -14,6 +14,6 @@ struct RepositoryListResponse {
 extension RepositoryListResponse {
     init(_ src: GitReposList?) throws {
         guard let src = src else { throw RespApiError(.DataError) }
-        list = src.compactMap{ $0 } .filter { !($0.fork ?? true) } .map { RepositoryEntity($0) }
+        list = src.compactMap{ $0 } .map { RepositoryEntity($0) }
     }
 }
