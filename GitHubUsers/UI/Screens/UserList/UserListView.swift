@@ -19,6 +19,9 @@ struct UserListView: View {
     var body: some View {
         ZStack {
             userInfoContent
+            if viewModel.showIndicator {
+                GradientIndicatorView()
+            }
         }
         .edgesIgnoringSafeArea(.all)
         
@@ -47,9 +50,6 @@ private extension UserListView {
                     .frame(height: viewModel.tags.count > 0 ? 48 : 8)
                 ZStack {
                     userListContent
-                    if viewModel.showIndicator {
-                        indicatorContent
-                    }
                     if viewModel.isShowEmpty {
                         emptyContent
                     }
@@ -84,8 +84,7 @@ private extension UserListView {
     }
     
     func detailsView(userInfo: UserEntity) -> some View {
-        UserDetailView(viewModel: .init(container: viewModel.container,
-                                        userInfo:userInfo))
+        UserDetailView(viewModel: viewModel.userDetailViewModel)
     }
     
     var emptyContent: some View {
@@ -99,18 +98,6 @@ private extension UserListView {
             Text(localString.noResults(viewModel.searchKey.debugDescription))
                 .font(.system(.title3, design: .rounded))
         }
-    }
-    
-    var indicatorContent: some View {
-        ZStack{
-            Rectangle()
-                .foregroundColor(Color.black.opacity(0.30))
-            VStack {
-                IndicatorView()
-                    .frame(width: 48, height: 48)
-            }
-        }
-        .edgesIgnoringSafeArea(.all)
     }
 }
 

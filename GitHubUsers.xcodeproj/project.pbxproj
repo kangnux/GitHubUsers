@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		000535C527562305006AF9BE /* GradientIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000535C427562305006AF9BE /* GradientIndicatorView.swift */; };
 		00309BBE2743AB2400814913 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 00309BC02743AB2400814913 /* Localizable.strings */; };
 		00309BC52743AEEF00814913 /* OmitUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00309BC42743AEEF00814913 /* OmitUserView.swift */; };
 		00309BC82743B27300814913 /* OmitUserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00309BC72743B27300814913 /* OmitUserViewModel.swift */; };
@@ -112,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		000535C427562305006AF9BE /* GradientIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientIndicatorView.swift; sourceTree = "<group>"; };
 		00309BBF2743AB2400814913 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00309BC12743AB2A00814913 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		00309BC42743AEEF00814913 /* OmitUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OmitUserView.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 				004E7D3127484EFF008FD000 /* WebView.swift */,
 				004E7D52274931F0008FD000 /* ApiAlertBag.swift */,
 				004E7D5427493278008FD000 /* AlertItem.swift */,
+				000535C427562305006AF9BE /* GradientIndicatorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -786,6 +789,7 @@
 				00309BDA27452B5D00814913 /* GitUserInfo.swift in Sources */,
 				00E337F2274CA86700681370 /* LoginWebViewModel.swift in Sources */,
 				00897ACF274339C2001A6A18 /* Publisher+WeakAssign.swift in Sources */,
+				000535C527562305006AF9BE /* GradientIndicatorView.swift in Sources */,
 				00309BD927452B5D00814913 /* GitSearchUserItem.swift in Sources */,
 				00897AB827433370001A6A18 /* JSONValue.swift in Sources */,
 				00897AC127433370001A6A18 /* Models.swift in Sources */,

@@ -13,14 +13,24 @@ struct UserDetailView: View {
     @State var image: UIImage = UIImage()
     
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(spacing: 16) {
-                detailInfoContent
-                repositoriesContent
+        ZStack {
+            ScrollView(.vertical) {
+                VStack(spacing: 16) {
+                    detailInfoContent
+                    if viewModel.repositories.count > 0 {
+                        repositoriesContent
+                    } else if (viewModel.repositories.count == 0 &&
+                               !viewModel.showIndicator) {
+                        emptyRepositoryContent
+                    }
+                }
+            }
+            .navigationBarTitle(localString.repositories(), displayMode: .inline)
+            if viewModel.showIndicator {
+                GradientIndicatorView()
             }
         }
-        .navigationTitle(localString.repositories())
-        .navigationBarTitleDisplayMode(.inline)
+        
         .onRotate { newOrientation in
             orientation = newOrientation
         }
@@ -65,13 +75,21 @@ private extension UserDetailView {
                     NavigationLink(
                         destination: WebView(loadUrl: repository.htmlUrl)
                     ){
-                        VStack {
-                            RepositoryView(
-                                viewModel: .init(container: viewModel.container, repository: repository))
-                        }
+                        RepositoryView(
+                            viewModel: .init(container: viewModel.container, repository: repository))
                     }
                 }
             }
+        }
+    }
+    
+    var emptyRepositoryContent: some View {
+        VStack {
+            Spacer()
+            
+            localString.noRepository.text
+                .font(.system(.title2, design: .default))
+                .foregroundColor(OpenColor.GRAY.color(6))
         }
     }
     
@@ -194,7 +212,7 @@ struct UserDetailView_Previews: PreviewProvider {
         followers: "10",
         following: "1.0K")
     static var previews: some View {
-        UserDetailView(viewModel: .init(container: .preview, userInfo: user))
+        UserDetailView(viewModel: .init(container: .preview))
     }
 }
 #endif

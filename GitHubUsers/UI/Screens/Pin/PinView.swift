@@ -26,10 +26,9 @@ struct PinView: View {
                     }
                 }
             }
+            .navigationBarTitle(localString.pin(), displayMode: .inline)
             .background(currentMode == .light ?
                         GradientColor.lighBlue.gradient : GradientColor.darkBlue.gradient)
-            .navigationTitle(localString.pin())
-            .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .edgesIgnoringSafeArea(.all)
@@ -64,7 +63,7 @@ private extension PinView {
                 NavigationLink(
                     destination: detailsView(userInfo: userInfo),
                     tag: userInfo.login,
-                    selection: $viewModel.tapLogin) {
+                    selection: $viewModel.routingState.tapLogin) {
                         OmitUserView(viewModel: .init(container: viewModel.container, userInfo))
                     }
             }
@@ -104,8 +103,7 @@ private extension PinView {
     }
     
     func detailsView(userInfo: UserEntity) -> some View {
-        UserDetailView(viewModel: .init(container: viewModel.container,
-                                        userInfo:userInfo))
+        UserDetailView(viewModel: viewModel.userDetailViewModel)
     }
     
     var emptyContent: some View {

@@ -24,10 +24,14 @@ class UserListViewModel: ObservableObject {
     @Published var isShowEmpty: Bool = false
     @Published var authorizeState: TokenAuthorizeState = .invalid
     
+    var userDetailViewModel: UserDetailViewModel
+    
     init(container: DIContainer) {
         self.container = container
         let appState = container.appState
         _routingState = .init(initialValue: appState.value.routing.userList)
+        
+        userDetailViewModel = .init(container: container)
         
         cancelBag.collect {
             $searchKey
@@ -43,6 +47,17 @@ class UserListViewModel: ObservableObject {
             $authorizeState
                 .removeDuplicates()
                 .sink { appState[\.userData.authorizeState] = $0 }
+            
+            $routingState.sink { appState[\.routing.userList.tapLogin] = $0.tapLogin }
+            
+            $userListInfo
+                .removeDuplicates()
+                .sink { self.userDetailViewModel.userInfoList = $0.list }
+            
+            $routingState
+                .removeDuplicates()
+                .map { $0.tapLogin ?? localString.empty() }
+                .sink { self.userDetailViewModel.tapLogin = $0 }
         }
     }
     

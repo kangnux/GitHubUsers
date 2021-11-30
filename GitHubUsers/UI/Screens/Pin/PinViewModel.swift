@@ -17,15 +17,19 @@ class PinViewModel: ObservableObject {
     @Published var apiAlertBag = ApiAlertBag()
     @Published var refresh: Trigger<RefreshType> = .init(type: .appear, trigger: false)
     @Published var tab: PinViewTab
-    @Published var tapLogin: UserEntity.Login?
+    @Published var routingState: Routing
     @Published var userListInfo: UserListResponse = UserListResponse()
     @Published var repositories: [RepositoryEntity] = []
-
+    
+    var userDetailViewModel: UserDetailViewModel
+    
     init(container: DIContainer) {
         self.container = container
         let appState = container.appState
         _tab = .init(initialValue: appState.value.routing.pinTab.tab)
-        _tapLogin = .init(initialValue: appState.value.routing.pinTab.tapLogin)
+        _routingState = .init(initialValue: appState.value.routing.pinTab)
+        
+        userDetailViewModel = UserDetailViewModel(container: container)
         
         cancelBag.collect {
             $tab.sink{ appState[\.routing.pinTab.tab] = $0 }
@@ -45,6 +49,16 @@ class PinViewModel: ObservableObject {
                 .sink { [weak self] _ in
                     self?.fetPinRepositories()
                 }
+            
+            $userListInfo
+                .removeDuplicates()
+                .sink { self.userDetailViewModel.userInfoList = $0.list }
+            
+            
+            $routingState
+                .removeDuplicates()
+                .map { $0.tapLogin ?? localString.empty() }
+                .sink { self.userDetailViewModel.tapLogin = $0 }
         }
     }
     
