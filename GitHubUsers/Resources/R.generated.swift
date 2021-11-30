@@ -129,7 +129,7 @@ struct R: Rswift.Validatable {
 
   /// This `R.string` struct is generated, and contains static references to 1 localization tables.
   struct string {
-    /// This `R.string.localizable` struct is generated, and contains static references to 47 localization keys.
+    /// This `R.string.localizable` struct is generated, and contains static references to 48 localization keys.
     struct localizable {
       /// en translation: 
       ///
@@ -291,6 +291,10 @@ struct R: Rswift.Validatable {
       ///
       /// Locales: en, ja
       static let thankTitle = Rswift.StringResource(key: "thankTitle", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
+      /// en translation: There is no repositories.
+      ///
+      /// Locales: en, ja
+      static let noRepository = Rswift.StringResource(key: "noRepository", tableName: "Localizable", bundle: R.hostingBundle, locales: ["en", "ja"], comment: nil)
       /// en translation: There is no results for  %@
       ///
       /// Locales: en, ja
@@ -926,6 +930,21 @@ struct R: Rswift.Validatable {
         }
 
         return NSLocalizedString("thankTitle", bundle: bundle, comment: "")
+      }
+
+      /// en translation: There is no repositories.
+      ///
+      /// Locales: en, ja
+      static func noRepository(preferredLanguages: [String]? = nil) -> String {
+        guard let preferredLanguages = preferredLanguages else {
+          return NSLocalizedString("noRepository", bundle: hostingBundle, comment: "")
+        }
+
+        guard let (_, bundle) = localeBundle(tableName: "Localizable", preferredLanguages: preferredLanguages) else {
+          return "noRepository"
+        }
+
+        return NSLocalizedString("noRepository", bundle: bundle, comment: "")
       }
 
       /// en translation: There is no results for  %@

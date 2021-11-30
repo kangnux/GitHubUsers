@@ -79,8 +79,7 @@ struct ThankView: View {
                     })
                 }
             }
-            .navigationTitle(localString.thankTitle.text)
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle(localString.thankTitle(), displayMode: .inline)
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

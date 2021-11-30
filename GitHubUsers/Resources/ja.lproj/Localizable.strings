@@ -25,6 +25,7 @@
 "noPinItem" = "Add some pin to show here...";
 "countTitle" = "検索件数: %@";
 "delete" = "Delete";
+"noRepository" = "リポジトリはございません。";
 
 // UserDetail
 "mailto" = "mailto:%@";

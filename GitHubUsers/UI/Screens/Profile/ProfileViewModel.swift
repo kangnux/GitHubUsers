@@ -21,6 +21,7 @@ class ProfileViewModel: ObservableObject {
     @Published var count: SearchCount = .ten
     @Published var userInfo = UserEntity()
     @Published var repositories: [RepositoryEntity] = []
+    @Published var showIndicator = false
     
     init(container: DIContainer) {
         self.container = container
@@ -72,27 +73,29 @@ class ProfileViewModel: ObservableObject {
     }
     
     func fetchUserInfo() {
+        showIndicator = true
         disposable = container.services.authService.fetchUserInfo()
             .subscribe(onSuccess: { [weak self] response in
                 DispatchQueue.main.async {
                     self?.userInfo = response
                     self?.fetchUserRepositories()
                 }
-            }, onFailure: { error in
-                
+            }, onFailure: { [weak self] error in
+                self?.showIndicator = false
             })
         disposable?.disposed(by: disposeBag)
     }
     
     func fetchUserRepositories() {
         if userInfo.login.isEmpty { return }
-        
         disposable = container.services.repositoryService.fetchUserRepository(userInfo.login)
             .subscribe(onSuccess: { [weak self] response in
                 DispatchQueue.main.async {
                     self?.repositories = response.list
+                    self?.showIndicator = false
                 }
-            }, onFailure: { _ in
+            }, onFailure: { [weak self] _ in
+                self?.showIndicator = false
             })
         disposable?.disposed(by: disposeBag)
     }

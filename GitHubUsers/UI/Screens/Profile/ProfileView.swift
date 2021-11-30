@@ -11,26 +11,36 @@ struct ProfileView: View {
     @ObservedObject private(set) var viewModel: ProfileViewModel
     
     var body: some View {
-        NavigationView {
-            GeometryReader { proxy in
-                VStack(alignment: .leading) {
-                    configSearchCountContent
-                    Divider()
-                    authorizeInfoContent(width: proxy.size.width / 2)
-                    Divider()
-                    if viewModel.authorizeState == .valid {
-                        ScrollView(.vertical) {
-                            detailInfoContent
-                            Divider()
-                            repositoriesContent
+        ZStack {
+            NavigationView {
+                GeometryReader { proxy in
+                    VStack(alignment: .leading) {
+                        configSearchCountContent
+                        Divider()
+                        authorizeInfoContent(width: proxy.size.width / 2)
+                        Divider()
+                        if viewModel.authorizeState == .valid {
+                            ScrollView(.vertical) {
+                                detailInfoContent
+                                Divider()
+                                if viewModel.repositories.count > 0 {
+                                    repositoriesContent
+                                } else if (viewModel.repositories.count == 0 &&
+                                           !viewModel.showIndicator) {
+                                    emptyRepositoryContent
+                                }
+                            }
                         }
                     }
+                    .padding(.horizontal, 8)
                 }
-                .padding(.horizontal, 8)
+                .navigationTitle(localString.profile())
             }
-            .navigationTitle(localString.profile())
+            .navigationViewStyle(StackNavigationViewStyle())
+            if viewModel.showIndicator {
+                GradientIndicatorView()
+            }
         }
-        .navigationViewStyle(StackNavigationViewStyle())
         .alert(isPresented: $viewModel.authInfo.showAlert) {
             Alert(title: Text(viewModel.authInfo.state.title),
                   dismissButton: .default(localString.close.text,
@@ -126,6 +136,16 @@ private extension ProfileView {
             Divider()
         }
         .padding([.leading, .bottom], 16)
+    }
+    
+    var emptyRepositoryContent: some View {
+        VStack {
+            Spacer()
+            
+            localString.noRepository.text
+                .font(.system(.title2, design: .default))
+                .foregroundColor(OpenColor.GRAY.color(6))
+        }
     }
     
     var repositoriesContent: some View {

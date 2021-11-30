@@ -25,6 +25,7 @@
 "noPinItem" = "Add some pin to show here...";
 "countTitle" = "Search Counts: %@";
 "delete" = "Delete";
+"noRepository" = "There is no repositories.";
 
 // UserDetail
 "mailto" = "mailto:%@";

@@ -15,16 +15,17 @@ class UserDetailViewModel: ObservableObject {
     private let disposeBag = DisposeBag()
     
     @Published var apiAlertBag = ApiAlertBag()
+    @Published var userInfoList: [UserEntity] = []
     @Published var userInfo = UserEntity()
+    @Published var tapLogin: String = localString.empty()
     @Published var repositories: [RepositoryEntity] = []
     @Published var showIndicator = false
     @Published var pinLoginList: [UserEntity.Login] = []
     @Published var pinRepositories:[PinRepositoryEntity] = []
     @Published var isUserPin = false
     
-    init(container: DIContainer, userInfo: UserEntity) {
+    init(container: DIContainer) {
         self.container = container
-        self.userInfo = userInfo
         let appState = container.appState
         _pinLoginList = .init(initialValue: appState.value.userData.pinLoginList)
         _pinRepositories = .init(initialValue: appState.value.userData.pinRepositories)
@@ -43,29 +44,39 @@ class UserDetailViewModel: ObservableObject {
             
             $pinLoginList
                 .removeDuplicates()
-                .map{ $0.contains(userInfo.login) }
+                .map{ $0.contains(self.tapLogin) }
                 .weakAssign(to: \.isUserPin, on: self)
+            
+            $userInfoList.combineLatest($tapLogin)
+                .removeDuplicates { $0 == $1 }
+                .map { list, login in
+                    list.first{ element in element.login == login } ?? UserEntity()
+                }
+                .weakAssign(to: \.userInfo, on: self)
         }
     }
     
     func updatePinUserStatus(_ isPin: Bool) {
-        AppSettingManager.shared.updatePinUserStatus(isPin, userInfo.login, userInfo.avatarUrl)
-        self.pinLoginList = AppSettingManager.shared.fetchPinUserList().map { $0.login }
+        if !tapLogin.isEmpty {
+            AppSettingManager.shared.updatePinUserStatus(isPin, tapLogin, userInfo.avatarUrl)
+            self.pinLoginList = AppSettingManager.shared.fetchPinUserList().map { $0.login }
+        }
     }
     
     func fetchUserRepositories() {
-        if showIndicator || userInfo.login.isEmpty { return }
-        showIndicator = true
-        
-        disposable = container.services.repositoryService.fetchUserRepository(userInfo.login)
-            .subscribe(onSuccess: { [weak self] response in
-                DispatchQueue.main.async {
-                    self?.repositories = response.list.filter { $0.fork == false }
+        self.repositories = []
+        if !tapLogin.isEmpty {
+            showIndicator = true
+            disposable = container.services.repositoryService.fetchUserRepository(tapLogin)
+                .subscribe(onSuccess: { [weak self] response in
+                    DispatchQueue.main.async {
+                        self?.showIndicator = false
+                        self?.repositories = response.list.filter { $0.fork == false }
+                    }
+                }, onFailure: { [weak self]  _ in
                     self?.showIndicator = false
-                }
-            }, onFailure: {  [weak self] error in
-                self?.showIndicator = false
-            })
-        disposable?.disposed(by: disposeBag)
+                })
+            disposable?.disposed(by: disposeBag)
+        }
     }
 }
